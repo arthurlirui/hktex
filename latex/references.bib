@@ -1,0 +1,472 @@
+%% References for anisotropic Gaussian splatting with normal-mapped
+%% microfacet shading.  SIGGRAPH / TOG draft.
+%%
+%% Every arXiv entry below has its PDF mirrored in ../pdfs/<id>.pdf.
+%% See ../pdfs/README.md for the full file→paper mapping.
+%%
+%% The arXiv IDs in this file were all verified against arxiv.org on
+%% 2026-09-21; the original draft contained several placeholder IDs that
+%% pointed at unrelated papers and have been corrected.
+
+% ============================================================
+% Core Gaussian Splatting
+% ============================================================
+
+@inproceedings{kerbl3Dgaussians,
+  title     = {3D Gaussian Splatting for Real-Time Radiance Field Rendering},
+  author    = {Kerbl, Bernhard and Kopanas, Georgios and Leimk{\"u}hler, Thomas and Drettakis, George},
+  booktitle = {ACM Transactions on Graphics (SIGGRAPH 2023)},
+  volume    = {42},
+  number    = {4},
+  year      = {2023},
+  publisher = {ACM},
+  doi       = {10.1145/3592433},
+  note      = {arXiv:2308.04079}
+}
+
+@inproceedings{2dgaussians,
+  title     = {2D Gaussian Splatting for Geometrically Accurate Radiance Fields},
+  author    = {Huang, Binbin and Yu, Zehao and Chen, Anpei and Geiger, Andreas and Gao, Shenghua},
+  booktitle = {ACM SIGGRAPH 2024 Conference Papers},
+  year      = {2024},
+  publisher = {ACM},
+  doi       = {10.1145/3641519.3657428},
+  note      = {arXiv:2403.17888}
+}
+
+% ============================================================
+% Anisotropic Appearance / ASG  (contribution 2 overlaps)
+% ============================================================
+
+@inproceedings{specgaussian,
+  title     = {{Spec-Gaussian}: Anisotropic View-Dependent Appearance for 3D Gaussian Splatting},
+  author    = {Yang, Ziyi and Gao, Xinyu and Zhou, Wen and Liu, Shaohui and Jia, Peng and Ji, Ying},
+  booktitle = {ACM SIGGRAPH 2024 Conference Papers},
+  year      = {2024},
+  publisher = {ACM},
+  doi       = {10.1145/3641519.3657421},
+  note      = {arXiv:2402.15870}
+}
+
+@article{specgaussianlf,
+  title   = {{SpecGaussian} with Latent Features: A High-quality Modeling of the View-dependent Appearance for 3D Gaussian Splatting},
+  author  = {Wang, Zhiru and Xie, Shiyun and Pan, Chengwei and Wang, Guoping},
+  journal = {arXiv preprint arXiv:2409.05868},
+  year    = {2024}
+}
+
+@article{glossgau,
+  title   = {{GlossGau}: Efficient Inverse Rendering for Glossy Surface with Anisotropic Spherical Gaussian},
+  author  = {Du, Bang and Li, Runfa Blark and Du, Chen and Nguyen, Truong},
+  journal = {arXiv preprint arXiv:2502.14129},
+  year    = {2025},
+  note    = {Primary baseline: ASG NDF on 2D-GS, no normal mapping, no deferred G-buffer.}
+}
+
+@article{nighttime_pbs,
+  title   = {Nighttime Autonomous Driving Scene Reconstruction with Physically-Based Gaussian Splatting},
+  author  = {Kim, Tae-Kyeong and Chen, Xingxin and Wu, Guile and Huang, Chengjie and Bai, Dongfeng and Liu, Bingbing},
+  journal = {arXiv preprint arXiv:2602.13549},
+  year    = {2026},
+  note    = {ASG used for specular term; no normal mapping.}
+}
+
+@article{ssdgs,
+  title   = {{SSD-GS}: Scattering and Shadow Decomposition for Relightable 3D Gaussian Splatting},
+  author  = {{SSD-GS Authors}},
+  journal = {arXiv preprint arXiv:2604.13333},
+  year    = {2026},
+  note    = {Anisotropic Fresnel-based model.}
+}
+
+@article{gogs,
+  title   = {{GOGS}: High-Fidelity Geometry and Relighting for Glossy Objects via Gaussian Surfels},
+  author  = {{GOGS Authors}},
+  journal = {arXiv preprint arXiv:2508.14563},
+  year    = {2025},
+  note    = {Captures anisotropic highlights on 2D surfels.}
+}
+
+% ============================================================
+% Normal Mapping / Spatially-Varying Materials  (contribution 1 overlaps)
+% ============================================================
+
+@article{texturesplat,
+  title   = {{TextureSplat}: Per-Primitive Texture Mapping for Reflective Gaussian Splatting},
+  author  = {{TextureSplat Authors}},
+  journal = {arXiv preprint arXiv:2506.13348},
+  year    = {2025},
+  note    = {Per-primitive spatially-varying normals and materials via texture maps. Closest to contribution 1; BRDF anisotropy unconfirmed.}
+}
+
+@article{svgir,
+  title   = {{SVG-IR}: Spatially-Varying Gaussian Splatting for Inverse Rendering},
+  author  = {Sun, Hanxiao and Gao, YuPeng and Xie, Jin and Yang, Jian and Wang, Beibei},
+  journal = {arXiv preprint arXiv:2504.06815},
+  year    = {2024}
+}
+
+@article{geosplatting,
+  title   = {{GeoSplatting}: Towards Geometry Guided Gaussian Splatting for Physically-based Inverse Rendering},
+  author  = {Ye, Kai and Gao, Chong and Li, Guanbin and Chen, Wenzheng and Chen, Baoquan},
+  journal = {arXiv preprint arXiv:2410.24204},
+  year    = {2024}
+}
+
+% ============================================================
+% Relightable / Inverse Rendering with Gaussians
+% ============================================================
+
+@article{gsir,
+  title   = {{GS-IR}: 3D Gaussian Splatting for Inverse Rendering},
+  author  = {Liang, Zhihao and Zhang, Qi and Feng, Ying and Shan, Ying and Jia, Kui},
+  journal = {arXiv preprint arXiv:2311.16473},
+  year    = {2023}
+}
+
+@article{relightable3dgaussians,
+  title   = {Relightable 3D Gaussians: Realistic Point Cloud Relighting with {BRDF} Decomposition and Ray Tracing},
+  author  = {Gao, Jian and Gu, Chun and Lin, Youtian and Li, Zhihao and Zhu, Hao and Cao, Xun and Zhang, Li and Yao, Yao},
+  journal = {arXiv preprint arXiv:2311.16043},
+  year    = {2023}
+}
+
+% ============================================================
+% Deferred Shading / G-Buffer Splatting  (contribution 3 overlaps)
+% ============================================================
+
+@article{deferredgs,
+  title   = {{DeferredGS}: Decoupled and Editable Gaussian Splatting with Deferred Shading},
+  author  = {Wu, Tong and Sun, Jia-Mu and Lai, Yu-Kun and Ma, Yuewen and Kobbelt, Leif and Gao, Lin},
+  journal = {arXiv preprint arXiv:2404.09412},
+  year    = {2024},
+  note    = {G-buffer architecture; closest to contribution 3.}
+}
+
+@article{gigs,
+  title   = {{GI-GS}: Global Illumination Decomposition on Gaussian Splatting for Inverse Rendering},
+  author  = {{GI-GS Authors}},
+  journal = {arXiv preprint arXiv:2410.02619},
+  year    = {2024},
+  note    = {Deferred shading + G-buffer; BRDF type and normal-mapping status unspecified.}
+}
+
+@article{gusir,
+  title   = {{GUS-IR}: Gaussian Splatting with Unified Shading for Inverse Rendering},
+  author  = {Liang, Zhihao and Li, Hongdong and Jia, Kui and Guo, Kailing and Zhang, Qi},
+  journal = {arXiv preprint arXiv:2411.07478},
+  year    = {2024}
+}
+
+@article{rtrgs,
+  title   = {{RTR-GS}: 3D Gaussian Splatting for Inverse Rendering with Radiance Transfer and Reflection},
+  author  = {Zhou, Yongyang and Zhang, Fang-Lue and Wang, Zichen and Zhang, Lei},
+  journal = {arXiv preprint arXiv:2507.07733},
+  year    = {2025}
+}
+
+@article{rgsdr,
+  title   = {{RGS-DR}: Deferred Reflections and Residual Shading in 2D Gaussian Splatting},
+  author  = {Kouros, Georgios and Wu, Minye and Tuytelaars, Tinne},
+  journal = {arXiv preprint arXiv:2504.18468},
+  year    = {2025}
+}
+
+@article{specglosssurfels,
+  title   = {Spec-Gloss Surfels and Normal-Diffuse Priors for Relightable Glossy Objects},
+  author  = {Kouros, Georgios and Wu, Minye and Tuytelaars, Tinne},
+  journal = {arXiv preprint arXiv:2510.02069},
+  year    = {2025}
+}
+
+@article{surf3dss,
+  title   = {{3DSS}: 3D Surface Splatting for Inverse Rendering},
+  author  = {{3DSS Authors}},
+  journal = {arXiv preprint arXiv:2605.05876},
+  year    = {2026},
+  note    = {First differentiable surface-splatting renderer for PBR inverse rendering.}
+}
+
+% ============================================================
+% Reflection
+% ============================================================
+
+@article{reflectivegaussians,
+  title   = {Reflective Gaussian Splatting},
+  author  = {Yao, Yuxuan and Zeng, Zixuan and Gu, Chun and Zhu, Xiatian and Zhang, Li},
+  journal = {arXiv preprint arXiv:2412.19282},
+  year    = {2024}
+}
+
+@article{gsror2,
+  title   = {{GS-ROR$^2$}: Bidirectional-guided 3D{GS} and {SDF} for Reflective Object Relighting and Reconstruction},
+  author  = {Zhu, Zuo-Liang and Wang, Beibei and Yang, Jian},
+  journal = {arXiv preprint arXiv:2406.18544},
+  year    = {2024}
+}
+
+% ============================================================
+% Normal Priors for Gaussian Geometry
+% ============================================================
+
+@article{rosgs,
+  title   = {{ROSGS}: Relightable Outdoor Scenes With Gaussian Splatting},
+  author  = {Liao, Lianjun and Zhang, Chunhui and Wu, Tong and Lv, Henglei and Deng, Bailin and Gao, Lin},
+  journal = {arXiv preprint arXiv:2509.11275},
+  year    = {2025}
+}
+
+@article{psgs,
+  title   = {{PS-GS}: Gaussian Splatting for Multi-View Photometric Stereo},
+  author  = {Chen, Yixiao and Liang, Bin and Guo, Hanzhi and Cheng, Yongqing and Zhao, Jiayi and Weng, Dongdong},
+  journal = {arXiv preprint arXiv:2507.18231},
+  year    = {2025}
+}
+
+@article{tsgs,
+  title   = {{TSGS}: Improving Gaussian Splatting for Transparent Surface Reconstruction via Normal and De-lighting Priors},
+  author  = {Wu, Dalong and Luvizon, Diogo and Xu, Hui and Xu, Wei and Yang, Wen and Xiang, Jun and Wang, Zhe},
+  journal = {arXiv preprint arXiv:2504.12799},
+  year    = {2025}
+}
+
+@article{headlighter,
+  title   = {{HeadLighter}: Disentangling Illumination in Generative 3D Gaussian Heads via Lightstage Captures},
+  author  = {Wang, Yating and Sun, Yuan and Wang, Xuan and Yi, Ran and Zhou, Boyao and Sun, Yipengjing and Liu, Hongyu and Wang, Yinuo and Ma, Lizhuang},
+  journal = {arXiv preprint arXiv:2601.02103},
+  year    = {2026}
+}
+
+% ============================================================
+% Polarization / Physics-grounded (tangential references)
+% ============================================================
+
+@article{phygap,
+  title   = {{PhyGaP}: Physically-Grounded Gaussians with Polarization Cues},
+  author  = {Wu, Jiale and Bai, Xiaoyang and He, Zongqi and Xu, Weiwei and Peng, Yifan},
+  journal = {arXiv preprint arXiv:2603.14001},
+  year    = {2026}
+}
+
+@article{bigs,
+  title   = {{BiGS}: Bidirectional Gaussian Primitives for Relightable 3D Gaussian Splatting},
+  author  = {Liu, Zhenyuan and Guo, Yu and Li, Xinyuan and Bickel, Bernd and Zhang, Ran},
+  journal = {arXiv preprint arXiv:2408.13370},
+  year    = {2024}
+}
+
+@article{large_material_gaussian,
+  title   = {Large Material Gaussian Model for Relightable 3D Generation},
+  author  = {{Large Material Gaussian Authors}},
+  journal = {arXiv preprint arXiv:2509.22112},
+  year    = {2025}
+}
+
+% ============================================================
+% Foundational BRDF / Normal-Mapping / Microfacet Theory
+% (not on arXiv; cited from original venues. No PDFs in ../pdfs.)
+% ============================================================
+
+@article{cooktorrance,
+  title   = {A Reflectance Model for Computer Graphics},
+  author  = {Cook, Robert L. and Torrance, Kenneth E.},
+  journal = {ACM Transactions on Graphics},
+  volume  = {1},
+  number  = {1},
+  pages   = {7--24},
+  year    = {1982},
+  doi     = {10.1145/357290.357293}
+}
+
+@inproceedings{walter2007microfacet,
+  title     = {Microfacet Models for Refraction through Rough Surfaces},
+  author    = {Walter, Bruce and Marschner, Stephen R. and Li, Hongsong and Torrance, Kenneth E.},
+  booktitle = {Proceedings of the 18th Eurographics Conference on Rendering Techniques (EGSR)},
+  year      = {2007},
+  pages     = {195--206},
+  doi       = {10.2312/EGWR/EGSR07/195-206},
+  note      = {GGX / Trowbridge-Reitz NDF and the Smith shadowing-masking function.}
+}
+
+@inproceedings{burley2012disney,
+  title     = {Physically-Based Shading at {Disney}},
+  author    = {Burley, Brent},
+  booktitle = {ACM SIGGRAPH 2012 Course: Practical Physically-Based Shading in Film and Game Production},
+  year      = {2012}
+}
+
+@inproceedings{nvdiffrec,
+  title     = {{NVDIFFREC}: Modeling Indirect Illumination for Inverse Rendering},
+  author    = {Munkberg, Jacob and Hasselgren, Jon and Shen, Tianchang and Gao, Jun and Chen, Wenzheng and Evans, Alex and M{\"u}ller, Thomas and Fatahalian, Kayvon},
+  booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+  year      = {2022},
+  pages     = {18604--18613},
+  note      = {Source of the tangent-space normal-perturbation pattern reused in DeferredGS and our contribution 1.}
+}
+
+@inproceedings{xu2013anisg,
+  title     = {Anisotropic {Spherical} {Gaussians}},
+  author    = {Xu, Kun and Sun, Wei-Lun and Liu, Zhao and Tang, Peng-Peng and Hu, Shi-Min},
+  booktitle = {ACM Transactions on Graphics (SIGGRAPH Asia 2013)},
+  volume    = {32},
+  number    = {6},
+  year      = {2013},
+  doi       = {10.1145/2508363.2508384},
+  note      = {Original ASG formulation; NDF basis for contribution 2.}
+}
+
+@inproceedings{wang2009sphericalgaussian,
+  title     = {Spherical {Gaussian} Lighting for Precomputed Radiance Transfer},
+  author    = {Wang, Jiaping and Ren, Peiran and Bako, Steve and Sen, Pradeep and Hanrahan, Pat and Snyder, John},
+  booktitle = {ACM Transactions on Graphics (SIGGRAPH 2009)},
+  year      = {2009},
+  note      = {SG lighting and prefiltered envmap used in our envmap integration.}
+}
+
+@book{pharr2023pbrt,
+  title     = {Physically Based Rendering: From Theory to Implementation},
+  author    = {Pharr, Matt and Jakob, Wenzel and Humphreys, Greg},
+  edition   = {4th},
+  year      = {2023},
+  publisher = {MIT Press},
+  note      = {Normal mapping (chapter 9) and microfacet BRDFs (chapter 8) reference.}
+}
+
+% =============================================================
+% --- Spline-Texture related work additions (2026-09) ---
+
+@inproceedings{hktex,
+  title     = {Heat Kernel Textures: the Geodesic {Gaussians} That Do Not Splat},
+  author    = {Foti, Simone and Korkmaz, Caner and Zafeiriou, Stefanos and Birdal, Tolga},
+  booktitle = {Proceedings of the European Conference on Computer Vision (ECCV)},
+  year      = {2026},
+  note      = {Anisotropic heat kernels as intrinsic, UV-free textures on triangular meshes; the discrete-manifold precursor of this work.}
+}
+
+@article{nurbsdiff,
+  title   = {{NURBS-Diff}: A Differentiable Programming Module for {NURBS}},
+  author  = {Bsan, Busra and Kacar, Irem and Ozdemir, Ziya and Oztekin, Betul and Tola, Yasin and Kumbasar, Kaya},
+  journal = {arXiv preprint arXiv:2104.14547},
+  year    = {2021},
+  note    = {Differentiable NURBS curves and surfaces in PyTorch; demonstrated on point-cloud surface fitting.}
+}
+
+@misc{diffnurbs,
+  title        = {{Diff-NURBS}: Automatically Differentiable Pure-Python {NURBS} in {PyTorch}},
+  author       = {Ebert, Jan and others},
+  howpublished = {\url{https://github.com/HelmholtzAI-FZJ/Diff-NURBS}},
+  year         = {2024},
+  note         = {Maintained differentiable NURBS library providing closed-form surface derivatives and normals; used as our geometric backbone.}
+}
+
+@misc{nurbspytorch,
+  title        = {{NURBS-PyTorch}: Differentiable {NURBS} for {PyTorch}},
+  author       = {de Koning, Bart},
+  howpublished = {\url{https://github.com/SouthEndMusic/NURBS_PyTorch}},
+  year         = {2023},
+  note         = {Earlier differentiable NURBS implementation targeting PINNs; now unmaintained.}
+}
+
+@misc{torchnurbs,
+  title        = {{TorchNurbs}: Differentiable {NURBS} Curve and Surface Evaluation},
+  author       = {Hall, Ash},
+  howpublished = {\url{https://github.com/ashwhall/torchnurbs}},
+  year         = {2022},
+  note         = {Differentiable NURBS curve/surface evaluation; explicitly marked unmaintained and incomplete.}
+}
+
+@article{valvefit,
+  title   = {{VALVEFIT}: An Analysis-Suitable {B-spline}-Based Surface Fitting Framework for Patient-Specific Modeling of Tricuspid Valves},
+  author  = {Anonymous},
+  journal = {arXiv preprint arXiv:2505.09790},
+  year    = {2025},
+  note    = {GPU-accelerated differentiable B-spline surface fitting from medical point clouds.}
+}
+
+@article{diffsubsurf,
+  title   = {Differentiable Subdivision Surface Fitting},
+  author  = {Anonymous},
+  journal = {arXiv preprint arXiv:2208.01685},
+  year    = {2022},
+  note    = {Differentiable Loop-subdivision surface fitting to point clouds via IMLS, coupled with a differentiable rasteriser.}
+}
+
+@inproceedings{dualbrep,
+  title     = {{DualBrep}: A Dual-Field Continuous Representation for {B-rep} Modelling},
+  author    = {Anonymous},
+  booktitle = {ACM Transactions on Graphics (SIGGRAPH 2026)},
+  year      = {2026},
+  note      = {SDF/UDF dual fields for B-rep geometry and topology; flow-matching reconstruction of explicit B-rep from point clouds.}
+}
+
+@inproceedings{a2z,
+  title     = {{A2Z-10M+}: Geometric Deep Learning with {A-to-Z} {BRep} Annotations for {AI-Assisted} {CAD} Modeling and Reverse Engineering},
+  author    = {Anonymous},
+  booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+  year      = {2026},
+  note      = {Large-scale multi-modal B-rep annotation dataset and foundation model for CAD reverse engineering.}
+}
+
+@article{pscad,
+  title   = {{PS-CAD}: Local Geometry Guidance via Prompting and Selection for {CAD} Reconstruction},
+  author  = {Anonymous},
+  journal = {arXiv preprint arXiv:2405.15188},
+  year    = {2024},
+  note    = {Reconstructs CAD modelling sequences from point clouds with geometric prompting.}
+}
+
+@inproceedings{nurbssplatting,
+  title     = {{NURBS} Splatting: A Unified Differentiable Rendering Framework for Vector Graphics},
+  author    = {Anonymous},
+  booktitle = {Proceedings of the European Conference on Computer Vision (ECCV)},
+  year      = {2026},
+  note      = {Renders planar rational spline curves as continuous Gaussian fields; 2D precursor of the spline-as-Gaussian-field paradigm.}
+}
+
+@inproceedings{sugar,
+  title     = {{SuGaR}: Surface-Aligned {Gaussian} Splatting for Efficient {3D} Mesh Reconstruction and High-Quality Mesh Rendering},
+  author    = {Gu{\'e}don, Antoine and Lepetit, Vincent},
+  booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+  year      = {2024},
+  note      = {Regularises Gaussians to align with surfaces and binds them to a Poisson mesh; mesh-bound.}
+}
+
+@article{omega,
+  title   = {{OMeGa}: Joint Optimization of Explicit Meshes and {Gaussian} Splats for Robust Scene-Level Surface Reconstruction},
+  author  = {Anonymous},
+  journal = {arXiv preprint arXiv:2509.24308},
+  year    = {2025},
+  note    = {Joint optimisation of an explicit mesh and 2D splats expressed in the mesh frame; mesh-bound.}
+}
+
+@inproceedings{meshgs,
+  title     = {{MeshGS}: Adaptive Mesh-Aligned {Gaussian} Splatting for High-Quality Rendering},
+  author    = {Anonymous},
+  booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+  year      = {2024},
+  note      = {Distinguishes tightly- and loosely-bound splats on a mesh; mesh-bound.}
+}
+
+@article{gaustar,
+  title   = {{GauSTAR}: {Gaussian} Surface Tracking and Reconstruction},
+  author  = {Anonymous},
+  journal = {arXiv preprint arXiv:2501.10283},
+  year    = {2025},
+  note    = {Binds Gaussians to mesh faces for dynamic tracking, unbinding on topology change; mesh-bound.}
+}
+
+@article{manifoldgs,
+  title   = {Manifold-{GS}: Certified Hybrid Assets via Varifold-Conservative {Gaussian} Splatting},
+  author  = {Anonymous},
+  journal = {arXiv preprint arXiv:2608.00214},
+  year    = {2026},
+  note    = {Represents surface-like Gaussians as discrete unoriented varifolds and exports certified surface patches.}
+}
+
+@inproceedings{eggfusion,
+  title     = {{EGG-Fusion}: Efficient {3D} Reconstruction with Geometry-aware {Gaussian} Surfel on the Fly},
+  author    = {Anonymous},
+  booktitle = {ACM Transactions on Graphics (SIGGRAPH Asia 2025)},
+  year      = {2025},
+  note      = {Real-time geometry-aware Gaussian-surfel mapping for SLAM; mesh/surfel-bound.}
+}

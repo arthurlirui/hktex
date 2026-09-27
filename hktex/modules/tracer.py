@@ -9,6 +9,24 @@ import potpourri3d as pp3d
 import digeo
 import digeo.ops
 
+# digeo renamed Mesh kwargs `positions`/`triangles` -> `vertices`/`faces`
+# between 0.0.4 (what this code targets) and 1.0.x (the version built from
+# source here, since the 0.0.4 Windows wheel is ABI-incompatible with our
+# torch). Wrap Mesh to accept the old names as aliases.
+_MeshOrig = digeo.Mesh
+
+
+class _MeshCompat(_MeshOrig):
+    def __init__(self, positions=None, triangles=None, **kwargs):
+        if positions is not None:
+            kwargs.setdefault("vertices", positions)
+        if triangles is not None:
+            kwargs.setdefault("faces", triangles)
+        super().__init__(**kwargs)
+
+
+digeo.Mesh = _MeshCompat
+
 from tqdm import tqdm
 
 import hktex

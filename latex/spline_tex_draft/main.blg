@@ -1,0 +1,114 @@
+This is BibTeX, Version 0.99d (TeX Live 2024)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: main.aux
+The style file: ACM-Reference-Format.bst
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Database file #1: ../references.bib
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 9000 items from 6000.
+Reallocated glb_str_ptr (elt_size=4) to 20 items from 10.
+Reallocated global_strs (elt_size=200001) to 20 items from 10.
+Reallocated glb_str_end (elt_size=4) to 20 items from 10.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Warning--no number and no volume in diffsubsurf
+Warning--page numbers missing in both pages and numpages fields in diffsubsurf
+Warning--empty publisher in meshgs
+Warning--empty address in meshgs
+Warning--page numbers missing in both pages and numpages fields in meshgs
+Warning--no number and no volume in pscad
+Warning--page numbers missing in both pages and numpages fields in pscad
+Warning--empty publisher in eggfusion
+Warning--empty address in eggfusion
+Warning--page numbers missing in both pages and numpages fields in eggfusion
+Warning--no number and no volume in gaustar
+Warning--page numbers missing in both pages and numpages fields in gaustar
+Warning--no number and no volume in omega
+Warning--page numbers missing in both pages and numpages fields in omega
+Warning--no number and no volume in valvefit
+Warning--page numbers missing in both pages and numpages fields in valvefit
+Warning--empty publisher in a2z
+Warning--empty address in a2z
+Warning--page numbers missing in both pages and numpages fields in a2z
+Warning--empty publisher in dualbrep
+Warning--empty address in dualbrep
+Warning--page numbers missing in both pages and numpages fields in dualbrep
+Warning--no number and no volume in manifoldgs
+Warning--page numbers missing in both pages and numpages fields in manifoldgs
+Warning--empty publisher in nurbssplatting
+Warning--empty address in nurbssplatting
+Warning--page numbers missing in both pages and numpages fields in nurbssplatting
+Warning--no number and no volume in nurbsdiff
+Warning--page numbers missing in both pages and numpages fields in nurbsdiff
+Warning--empty publisher in hktex
+Warning--empty address in hktex
+Warning--page numbers missing in both pages and numpages fields in hktex
+Warning--no number and no volume in relightable3dgaussians
+Warning--page numbers missing in both pages and numpages fields in relightable3dgaussians
+Warning--no number and no volume in gigs
+Warning--page numbers missing in both pages and numpages fields in gigs
+Warning--empty publisher in sugar
+Warning--empty address in sugar
+Warning--page numbers missing in both pages and numpages fields in sugar
+Warning--empty address in 2dgaussians
+Warning--page numbers missing in both pages and numpages fields in 2dgaussians
+Warning--can't use both volume and number fields in kerbl3Dgaussians
+Warning--empty address in kerbl3Dgaussians
+Warning--page numbers missing in both pages and numpages fields in kerbl3Dgaussians
+Warning--no number and no volume in gusir
+Warning--page numbers missing in both pages and numpages fields in gusir
+Warning--no number and no volume in gsir
+Warning--page numbers missing in both pages and numpages fields in gsir
+Warning--no number and no volume in svgir
+Warning--page numbers missing in both pages and numpages fields in svgir
+Warning--no number and no volume in texturesplat
+Warning--page numbers missing in both pages and numpages fields in texturesplat
+Warning--no number and no volume in deferredgs
+Warning--page numbers missing in both pages and numpages fields in deferredgs
+Warning--no number and no volume in geosplatting
+Warning--page numbers missing in both pages and numpages fields in geosplatting
+Warning--no number and no volume in rtrgs
+Warning--page numbers missing in both pages and numpages fields in rtrgs
+You've used 28 entries,
+            6335 wiz_defined-function locations,
+            1660 strings with 25020 characters,
+and the built_in function-call counts, 27531 in all, are:
+= -- 3692
+> -- 836
+< -- 0
++ -- 271
+- -- 297
+* -- 1809
+:= -- 2558
+add.period$ -- 155
+call.type$ -- 28
+change.case$ -- 187
+chr.to.int$ -- 21
+cite$ -- 86
+duplicate$ -- 2486
+empty$ -- 1816
+format.name$ -- 345
+if$ -- 6976
+int.to.chr$ -- 9
+int.to.str$ -- 1
+missing$ -- 109
+newline$ -- 304
+num.names$ -- 189
+pop$ -- 1142
+preamble$ -- 1
+purify$ -- 397
+quote$ -- 0
+skip$ -- 757
+stack$ -- 0
+substring$ -- 1557
+swap$ -- 124
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 589
+warning$ -- 58
+while$ -- 145
+width$ -- 0
+write$ -- 586
+(There were 58 warnings)

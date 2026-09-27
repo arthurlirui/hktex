@@ -1,0 +1,221 @@
+%% SIGGRAPH (ACM Transactions on Graphics) technical paper draft.
+%% The siggraph format is obsolete in current acmart; use format=acmtog,
+%% which is the format used for SIGGRAPH technical papers and TOG.
+%% Compile with:  pdflatex main -> bibtex main -> pdflatex main -> pdflatex main
+\documentclass[acmtog, review=true, authorversion=false]{acmart}
+
+%% --- Packages ---
+\usepackage{graphicx}
+\usepackage{amsmath}
+% Note: do not load amssymb under acmart — newtxmath already defines \Bbbk.
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage{subcaption}
+\usepackage{listings}
+\usepackage{hyperref}
+
+%% --- Custom math macros ---
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\mat}[1]{\mathbf{#1}}
+\DeclareMathOperator{\ASG}{ASG}
+\DeclareMathOperator{\GGX}{GGX}
+\DeclareMathOperator{\BRDF}{BRDF}
+\DeclareMathOperator{\NDF}{NDF}
+
+%% --- ACM metadata: replace with real values before submission ---
+\acmJournal{TOG}
+\acmVolume{0}
+\acmNumber{0}
+\acmArticle{0}
+\acmMonth{0}
+\acmYear{2026}
+
+\begin{document}
+
+\title{Anisotropic Gaussian Splatting with Normal-Mapped Microfacet Shading}
+
+\author{Anonymous Author}
+\email{anonymous@example.com}
+\affiliation{%
+  \institution{Anonymous Institution}
+  \city{City}
+  \country{Country}
+}
+
+\begin{abstract}
+We present a method that combines normal-map textures with anisotropic
+Gaussian splatting to enable view-consistent, relightable rendering of
+surfaces exhibiting anisotropic reflectance (brushed metal, hair, fabric).
+Our approach augments each 2D Gaussian primitive with a tangent-space
+normal perturbation and shades it with an Anisotropic Spherical Gaussian
+(ASG) microfacet distribution under a deferred rendering pipeline. Unlike
+prior work that treats anisotropic appearance as a learned view-dependent
+field, we derive a physically grounded BRDF in which the ASG long axis is
+aligned to the Gaussian primitive's tangent, yielding sharper and more
+stable anisotropic highlights while remaining compatible with real-time
+splatting.
+\end{abstract}
+
+\ccsdesc[500]{Computing methodologies~Rendering}
+\ccsdesc[300]{Computing methodologies~Reflectance modeling}
+
+\keywords{Gaussian splatting, anisotropic BRDF, normal mapping, inverse
+rendering, relighting}
+
+\maketitle
+
+% =============================================================
+\section{Introduction}\label{sec:intro}
+
+3D Gaussian Splatting (3DGS)~\cite{kerbl3Dgaussians} has become a
+dominant primitive for real-time novel-view synthesis thanks to its
+explicit, highly parallel rasterization. However, vanilla 3DGS models
+view-dependent appearance with Spherical Harmonics (SH) and lacks an
+explicit surface normal, which prevents physically-based shading,
+relighting, and---critically---anisotropic reflectance effects such as
+brushed metal or hair.
+
+Two threads of work address these limitations. The first replaces SH
+with an \emph{Anisotropic Spherical Gaussian} (ASG) appearance
+field~\cite{specgaussian,glossgau}, directly modeling anisotropic
+view-dependent color but without a physical BRDF decomposition. The
+second augments Gaussians with normals and BRDF parameters for
+inverse rendering~\cite{gsir,relightable3dgaussians,deferredgs}, enabling
+relighting but relying on isotropic microfacet models.
+
+In this paper we bridge the two: we attach a tangent-space normal
+texture to each Gaussian primitive and shade with an ASG microfacet
+NDF whose long axis is aligned to the primitive tangent. This yields
+the first (to our knowledge) Gaussian splatting representation that
+jointly supports normal-map detail and physical anisotropic BRDF
+shading.
+
+\paragraph{Contributions.}
+\begin{itemize}
+  \item A per-Gaussian tangent-space normal perturbation field that
+        adds fine surface detail without changing primitive geometry.
+  \item An anisotropic microfacet shading model for Gaussian splatting
+        based on ASG NDF aligned to the primitive tangent.
+  \item A deferred splatting pipeline that combines the two for
+        real-time, relightable, anisotropic rendering.
+\end{itemize}
+
+% =============================================================
+\section{Related Work}\label{sec:related}
+
+\subsection{Gaussian Splatting}
+Kerbl et al.~\cite{kerbl3Dgaussians} introduced 3D Gaussian Splatting
+as an explicit, real-time radiance field representation. Subsequent
+work improved geometry with 2D Gaussian Splatting~\cite{2dgaussians}
+and surface-grounded primitives~\cite{geosplatting}.
+
+\subsection{Anisotropic Appearance Modeling}
+Spec-Gaussian~\cite{specgaussian} replaces SH with an ASG appearance
+field for view-dependent, anisotropic color. GlossGau~\cite{glossgau}
+uses an ASG to approximate the microfacet NDF for glossy inverse
+rendering. SpecGaussian-LF~\cite{specgaussianlf} further improves
+view-dependent modeling with latent features. GOGS~\cite{gogs}
+captures anisotropic highlights on Gaussian surfels, while
+SSD-GS~\cite{ssdgs} uses an anisotropic Fresnel-based model for
+scattering and shadow decomposition. The ASG itself originates from
+the work of Xu et al.~\cite{xu2013anisg}, and the Cook--Torrance
+microfacet framework~\cite{cooktorrance,walter2007microfacet} and
+the Disney principled BRDF~\cite{burley2012disney} provide the
+broader physically-based shading context.
+
+\subsection{Relightable Gaussian Splatting}
+GS-IR~\cite{gsir} introduced depth-derivation normal regularization
+for inverse rendering. Relightable 3D
+Gaussians~\cite{relightable3dgaussians} attaches normals and BRDF
+parameters per primitive with point-based ray tracing.
+DeferredGS~\cite{deferredgs} decouples texture and lighting via
+deferred shading with SDF-distilled normals. RGS-DR~\cite{rgsdr}
+adds specular residuals in a 2DGS deferred pipeline. Spec-Gloss
+Surfels~\cite{specglosssurfels} integrates a microfacet BRDF into
+2DGS with diffusion-based normal priors. GI-GS~\cite{gigs} performs
+global-illumination decomposition with deferred shading and path
+tracing, GUS-IR~\cite{gusir} unifies forward and deferred shading,
+RTR-GS~\cite{rtrgs} combines radiance transfer with deferred
+reflections, and 3DSS~\cite{surf3dss} introduces the first
+differentiable surface-splatting renderer for PBR inverse rendering.
+The tangent-space normal-perturbation pattern we adopt follows
+NVDIFFREC~\cite{nvdiffrec}, and the SG lighting and prefiltered
+environment map follow~\cite{wang2009sphericalgaussian}.
+
+\subsection{Per-Primitive Spatially-Varying Materials}
+TextureSplat~\cite{texturesplat} attaches per-primitive texture maps
+for spatially-varying normals and materials, and
+SVG-IR~\cite{svgir} proposes per-Gaussian spatially varying
+parameters. Our normal perturbation field is complementary: it is
+specifically aligned to the ASG tangent frame so that the
+perturbation direction modulates the anisotropic highlight pattern,
+which isotropic NDFs cannot exploit.
+
+\subsection{Normal Mapping in Neural Rendering}
+Classical normal mapping perturbs the surface normal in tangent space
+to add fine detail without tessellation. In neural rendering, normal
+priors from monocular estimators~\cite{rosgs} and photometric
+stereo~\cite{psgs} have been used to regularize Gaussian geometry.
+We instead use a normal texture for \emph{shading} detail, leaving
+geometry stable.
+
+% =============================================================
+\section{Method}\label{sec:method}
+
+\subsection{Preliminaries}
+Each 2D Gaussian primitive carries a center $\vect{c}\in\mathbb{R}^3$,
+two tangent vectors $\vect{u},\vect{v}$ defining the disk, opacity
+$\alpha$, and base color. Its surface normal is
+$\vect{n}_0 = \vect{u}\times\vect{v}$.
+
+\subsection{Per-Gaussian Normal Texture}
+We predict a tangent-space normal perturbation
+$\vect{d}\in[-1,1]^2$ per primitive from a small MLP conditioned on
+the primitive's spatial features. The shaded normal is
+\[
+  \vect{n} = \mathrm{normalize}\!\left(
+    \vect{n}_0 + d_x\,\vect{u} + d_y\,\vect{v}
+  \right).
+\]
+
+\subsection{Anisotropic ASG Microfacet Shading}
+We model the BRDF with an anisotropic NDF given by an ASG:
+\[
+  D(\vect{h}) = \ASG(\vect{h};\vect{n},\vect{t},\vect{b},\alpha_t,\alpha_b)
+  = \exp\!\left(
+      -\left(\frac{(\vect{h}\cdot\vect{t})^2}{\alpha_t^2}
+            +\frac{(\vect{h}\cdot\vect{b})^2}{\alpha_b^2}\right)
+    \right),
+\]
+where $\vect{h}$ is the half vector, $\vect{t}$ the tangent (aligned to
+the Gaussian long axis), $\vect{b}=\vect{n}\times\vect{t}$ the bitangent,
+and $\alpha_t,\alpha_b$ control anisotropy. The long axis of the ASG
+is thus geometrically tied to the primitive shape.
+
+\subsection{Deferred Splatting}
+We splat a G-buffer (albedo, $\vect{n}$, $\vect{t}$, $\alpha_t$,
+$\alpha_b$, depth) and shade in pixel space, following the deferred
+design of DeferredGS~\cite{deferredgs} and
+RGS-DR~\cite{rgsdr}.
+
+% =============================================================
+\section{Results}\label{sec:results}
+
+Placeholder for experiments, comparisons against
+Spec-Gaussian~\cite{specgaussian}, GlossGau~\cite{glossgau},
+Relightable 3D Gaussians~\cite{relightable3dgaussians}, and
+DeferredGS~\cite{deferredgs}.
+
+% =============================================================
+\section{Conclusion}\label{sec:conclusion}
+
+We presented an anisotropic Gaussian splatting representation with
+normal-mapped microfacet shading. By tying the ASG NDF to the
+primitive tangent and perturbing the normal via a per-primitive
+texture, our method achieves sharp, stable anisotropic highlights
+while remaining relightable.
+
+\bibliographystyle{ACM-Reference-Format}
+\bibliography{references}
+
+\end{document}

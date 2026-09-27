@@ -1,0 +1,158 @@
+% =============================================================
+\section{Related Work}\label{sec:related}
+
+Our contribution sits at the confluence of three literatures that have, to
+date, evolved in isolation: (i)~differentiable parametric surface modelling
+for CAD, (ii)~surface-bound or surface-extracted Gaussian splatting, and
+(iii)~intrinsic texture representations on manifolds. We review each in turn
+and identify the empty intersection that motivates this work
+(\autoref{tab:landscape}).
+
+% -------------------------------------------------------------
+\subsection{Differentiable Parametric Surface Modelling}\label{sec:rw:diffcad}
+
+\paragraph{Differentiable NURBS and B-splines.}
+NURBS-Diff~\cite{nurbsdiff} introduced a differentiable programming module for
+NURBS curves and surfaces integrated into PyTorch, demonstrating unsupervised
+point-cloud reconstruction and analysis-constrained surface fitting. The
+Diff-NURBS library~\cite{diffnurbs} provides a maintained, pure-PyTorch
+NURBS implementation with closed-form surface derivatives and normals under
+an Apache-2.0 licence, serving as the geometric backbone of our method.
+VALVEFIT~\cite{valvefit} applies GPU-accelerated differentiable B-spline
+surface fitting to patient-specific heart-valve modelling, while
+NURBS-PyTorch~\cite{nurbspytorch} and TorchNurbs~\cite{torchnurbs} are earlier
+differentiable NURBS implementations now largely unmaintained. A common
+limitation of this entire family is the absence of a rendering pipeline: the
+fitting signal is a point cloud or a prescribed loss, never multi-view
+images, so the geometric and appearance channels have not been coupled
+end-to-end with a differentiable renderer.
+
+\paragraph{Differentiable subdivision surfaces.}
+As an alternative to parametric splines, differentiable subdivision surface
+fitting~\cite{diffsubsurf} fits Loop subdivision surfaces to point clouds via
+an implicit moving-least-squares target coupled with a differentiable
+rasteriser. Subdivision handles arbitrary topology more gracefully than
+tensor-product B-splines, but yields neither a compact control mesh with an
+analytic metric nor a CAD-native output. Our choice of B-splines sacrifices
+arbitrary topology (we restrict the present work to single-patch CAD-class
+objects) in exchange for a closed-form first fundamental form and direct
+compatibility with manufacturing pipelines.
+
+\paragraph{CAD reconstruction and reverse engineering.}
+A complementary line reconstructs boundary representations (B-reps) from
+unstructured input. DualBrep~\cite{dualbrep} (SIGGRAPH~2026) unifies B-rep
+geometry and topology in dual SDF/UDF scalar fields and extracts explicit
+B-rep models via flow matching from point clouds. A2Z-10M+~\cite{a2z} and
+PS-CAD~\cite{pscad} learn CAD modelling sequences from large annotated
+datasets. These methods operate on point clouds or modelling commands and do
+not employ differentiable rendering of the parametric surface itself; they
+are orthogonal to our image-based, rendering-driven formulation and could
+supply initial geometry for our joint optimisation.
+
+\paragraph{NURBS splatting in the plane.}
+Closest in spirit to our rendering formulation is NURBS
+Splatting~\cite{nurbssplatting} (ECCV~2026), which renders planar rational
+spline curves as continuous Gaussian fields by sampling Gaussians along the
+curve parameter domain, reformulating vector-graphics rendering as a smooth
+Gaussian-accumulation process with stable gradients. The framework elegantly
+handles rational weights, non-uniform knots, and closed-region filling.
+Crucially, however, it is confined to \emph{two-dimensional} planar curves:
+there is no 3D surface, no multi-view consistency, and no joint
+geometry--appearance optimisation. Our work can be read as the
+three-dimensional, image-driven generalisation of this idea to B-spline
+\emph{surfaces} carrying intrinsic heat-kernel appearance.
+
+% -------------------------------------------------------------
+\subsection{Surface-Bound Gaussian Splatting}\label{sec:rw:bindinggs}
+
+A substantial body of work tames the geometric ambiguity of 3DGS by binding
+Gaussian primitives to an explicit surface. SuGaR~\cite{sugar} regularises
+Gaussians to align with the underlying surface and optionally binds them to a
+Poisson-reconstructed mesh for joint optimisation and editing.
+OMeGa~\cite{omega} jointly optimises an explicit mesh and 2D splats whose
+spatial attributes are expressed in the mesh frame, improving indoor-scene
+geometry. MeshGS~\cite{meshgs} distinguishes tightly- and loosely-bound
+splats to align some Gaussians to geometry while letting others absorb mesh
+artefacts. GauSTAR~\cite{gaustar} binds Gaussians to mesh faces for dynamic
+surface tracking and reconstruction, unbinding them where topology changes.
+Manifold-GS~\cite{manifoldgs} represents surface-like Gaussians as discrete
+unoriented varifolds and exports certified open surface patches.
+EGG-Fusion~\cite{eggfusion} performs real-time geometry-aware Gaussian-surfel
+mapping for SLAM. Earlier foundations include 2D Gaussian
+Splatting~\cite{2dgaussians} and geometry-grounded
+primitives~\cite{geosplatting}.
+
+A unifying property of \emph{all} the above is the surface carrier: a
+\emph{discrete triangular mesh}. The mesh is $C^0$ across edges, possesses no
+analytic metric tensor, and is not a CAD-native representation. Consequently,
+kernel covariance must be inferred from discrete geometry, and the output
+cannot be fed directly to a manufacturing pipeline without reconstruction.
+Our formulation replaces the mesh with a differentiable B-spline surface,
+yielding a closed-form metric, $C^2$ continuity, and native CAD
+compatibility---at the cost of restricting the present scope to
+single-patch, CAD-class topology.
+
+% -------------------------------------------------------------
+\subsection{Intrinsic Texture and Appearance on Manifolds}\label{sec:rw:hktex}
+
+Heat Kernel Textures~\cite{hktex} (ECCV~2026) represent appearance on a
+triangular mesh as a set of anisotropic heat kernels---the geodesic
+counterparts of Gaussians---defined directly on the surface. Kernel
+positions, optimisation, pruning, and densification all operate in
+barycentric coordinates, avoiding UV seams, distortion, wasted atlas space,
+and uneven texel resolution. The representation is fitted from an existing
+texture or from multi-view images and integrates with physically based
+rendering.
+
+The computation of HKTex, however, is intrinsically mesh-discrete: it relies
+on a discrete Laplacian eigen-decomposition and a $k$-nearest-neighbour heat
+propagation to approximate the geodesic quantities that define each kernel.
+Our contribution is a strict generalisation: on a B-spline surface the first
+fundamental form is available in closed form and is differentiable in the
+control points, so each anisotropic heat kernel reduces to a Gaussian on the
+$(u,v)$ domain with covariance $g^{-1}$, and the entire eigen-decomposition
+and KNN machinery is eliminated. This simultaneously simplifies the
+formulation, makes it differentiable with respect to the geometry, and yields
+a representation that lives on a smooth rather than a discrete manifold.
+
+Related appearance-on-surface work includes TextureSplat~\cite{texturesplat}
+and SVG-IR~\cite{svgir}, which attach per-primitive spatially-varying
+materials to Gaussians, and the broader inverse-rendering line of
+GS-IR~\cite{gsir}, Relightable~3D~Gaussians~\cite{relightable3dgaussians},
+DeferredGS~\cite{deferredgs}, and their successors~\cite{gigs,gusir,rtrgs}.
+These methods model appearance as per-primitive attributes or small MLPs
+rather than intrinsic manifold kernels, and they remain mesh- or
+primitive-bound.
+
+% -------------------------------------------------------------
+\subsection{The Empty Intersection}\label{sec:rw:gap}
+
+\begin{table}[t]
+  \caption{Landscape of adjacent literatures. The cell marked
+  \textbf{(ours)} is, to our knowledge, unoccupied.}
+  \label{tab:landscape}
+  \small
+  \begin{tabular}{lccc}
+    \toprule
+     & Gaussian rendering & Diff.~rasterisation & Generative / flow \\
+    \midrule
+    2D planar curves     & NURBS Splatting~\cite{nurbssplatting} & --- & --- \\
+    3D triangular mesh   & SuGaR / OMeGa / GauSTAR~\cite{sugar,omega,gaustar} & DiffSubSurf~\cite{diffsubsurf} & --- \\
+    3D parametric surface & \textbf{(ours)} & --- & DualBrep~\cite{dualbrep} \\
+    3D B-rep             & --- & --- & DualBrep~\cite{dualbrep} \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\autoref{tab:landscape} summarises the landscape. NURBS
+Splatting~\cite{nurbssplatting} establishes the spline-as-Gaussian-field
+rendering paradigm but only for 2D curves. Surface-bound
+Gaussian splatting~\cite{sugar,omega,gaustar,meshgs,manifoldgs} binds
+Gaussians to surfaces but only to discrete meshes. HKTex~\cite{hktex}
+defines intrinsic Gaussian appearance but only on a discrete mesh with a
+fixed carrier. Differentiable CAD~\cite{nurbsdiff,diffnurbs,valvefit} and
+generative B-rep reconstruction~\cite{dualbrep} model parametric geometry but
+do not render it with Gaussians and do not optimise appearance jointly from
+images. The intersection---a differentiable B-spline \emph{surface} rendered
+as intrinsic Gaussian appearance and optimised jointly from multi-view
+images---is empty, and this paper occupies it.

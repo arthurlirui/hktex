@@ -1,5 +1,12 @@
 import torch
-import hktex.triton.distances as triton_distances
+
+# Triton is only available on Linux; the biharmonic-distance Triton kernel is
+# used solely by the non-KNN eigen-albo path. Import lazily so the package
+# (and the KNN pipeline) remains importable on platforms without Triton.
+try:
+    import hktex.triton.distances as triton_distances
+except ImportError:
+    triton_distances = None
 
 __all__ = [
     "compute_biharmonic_distance",
@@ -58,6 +65,11 @@ def compute_biharmonic_distance_pairwise(
     evecs_i: torch.Tensor, evecs_j, evals: torch.Tensor, triton: bool = True
 ):
     if triton:
+        if triton_distances is None:
+            raise ImportError(
+                "Triton backend is not available on this platform. Re-run with "
+                "triton=False, or install Triton (Linux only) to use the kernel."
+            )
         return triton_distances.compute_biharmonic_distance_pairwise(
             evecs_i, evecs_j, evals
         )

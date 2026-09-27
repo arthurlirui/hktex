@@ -1,0 +1,423 @@
+%%% -*-BibTeX-*-
+%%% Do NOT edit. File created by BibTeX with style
+%%% ACM-Reference-Format-Journals [18-Jan-2012].
+
+\begin{thebibliography}{28}
+
+%%% ====================================================================
+%%% NOTE TO THE USER: you can override these defaults by providing
+%%% customized versions of any of these macros before the \bibliography
+%%% command.  Each of them MUST provide its own final punctuation,
+%%% except for \shownote{} and \showURL{}.  The latter does
+%%% not use final punctuation, in order to avoid confusing it with
+%%% the Web address.
+%%%
+%%% To suppress output of a particular field, define its macro to expand
+%%% to an empty string, or better, \unskip, like this:
+%%%
+%%% \newcommand{\showURL}[1]{\unskip}   % LaTeX syntax
+%%%
+%%% \def \showURL #1{\unskip}           % plain TeX syntax
+%%%
+%%% ====================================================================
+
+\ifx \showCODEN    \undefined \def \showCODEN     #1{\unskip}     \fi
+\ifx \showISBNx    \undefined \def \showISBNx     #1{\unskip}     \fi
+\ifx \showISBNxiii \undefined \def \showISBNxiii  #1{\unskip}     \fi
+\ifx \showISSN     \undefined \def \showISSN      #1{\unskip}     \fi
+\ifx \showLCCN     \undefined \def \showLCCN      #1{\unskip}     \fi
+\ifx \shownote     \undefined \def \shownote      #1{#1}          \fi
+\ifx \showarticletitle \undefined \def \showarticletitle #1{#1}   \fi
+\ifx \showURL      \undefined \def \showURL       {\relax}        \fi
+% The following commands are used for tagged output and should be
+% invisible to TeX
+\providecommand\bibfield[2]{#2}
+\providecommand\bibinfo[2]{#2}
+\providecommand\natexlab[1]{#1}
+\providecommand\showeprint[2][]{arXiv:#2}
+\makeatletter
+\@ifundefined{NAT@parse@date}{}{\let\NAT@parse@date@orig\NAT@parse@date}
+\@ifundefined{NAT@parse@date}{}{\def\NAT@parse@date#1#2#3#4#5#6@@{\NAT@parse@date@orig#1#2#3#4#5#6@@\def\NAT@tempyear{0000}\def\NAT@tempexlab{{?}}\ifx\NAT@year\NAT@tempyear\ifx\NAT@exlab\NAT@tempexlab\def\NAT@date{[n.\,d.]}\else\edef\NAT@date{[n.\,d.]\NAT@exlab}\fi\fi}}
+\makeatother
+
+\bibitem[Anonymous(2022)]%
+        {diffsubsurf}
+\bibfield{author}{\bibinfo{person}{Anonymous}.}
+  \bibinfo{year}{2022}\natexlab{}.
+\newblock \showarticletitle{Differentiable Subdivision Surface Fitting}.
+\newblock \bibinfo{journal}{\emph{arXiv preprint arXiv:2208.01685}}
+  (\bibinfo{year}{2022}).
+\newblock
+\newblock
+\shownote{Differentiable Loop-subdivision surface fitting to point clouds via
+  IMLS, coupled with a differentiable rasteriser.}.
+
+
+\bibitem[Anonymous(2024a)]%
+        {meshgs}
+\bibfield{author}{\bibinfo{person}{Anonymous}.}
+  \bibinfo{year}{2024}\natexlab{a}.
+\newblock \showarticletitle{{MeshGS}: Adaptive Mesh-Aligned {Gaussian}
+  Splatting for High-Quality Rendering}. In
+  \bibinfo{booktitle}{\emph{Proceedings of the IEEE/CVF Conference on Computer
+  Vision and Pattern Recognition (CVPR)}}.
+\newblock
+\newblock
+\shownote{Distinguishes tightly- and loosely-bound splats on a mesh;
+  mesh-bound.}.
+
+
+\bibitem[Anonymous(2024b)]%
+        {pscad}
+\bibfield{author}{\bibinfo{person}{Anonymous}.}
+  \bibinfo{year}{2024}\natexlab{b}.
+\newblock \showarticletitle{{PS-CAD}: Local Geometry Guidance via Prompting and
+  Selection for {CAD} Reconstruction}.
+\newblock \bibinfo{journal}{\emph{arXiv preprint arXiv:2405.15188}}
+  (\bibinfo{year}{2024}).
+\newblock
+\newblock
+\shownote{Reconstructs CAD modelling sequences from point clouds with geometric
+  prompting.}.
+
+
+\bibitem[Anonymous(2025a)]%
+        {eggfusion}
+\bibfield{author}{\bibinfo{person}{Anonymous}.}
+  \bibinfo{year}{2025}\natexlab{a}.
+\newblock \showarticletitle{{EGG-Fusion}: Efficient {3D} Reconstruction with
+  Geometry-aware {Gaussian} Surfel on the Fly}. In
+  \bibinfo{booktitle}{\emph{ACM Transactions on Graphics (SIGGRAPH Asia
+  2025)}}.
+\newblock
+\newblock
+\shownote{Real-time geometry-aware Gaussian-surfel mapping for SLAM;
+  mesh/surfel-bound.}.
+
+
+\bibitem[Anonymous(2025b)]%
+        {gaustar}
+\bibfield{author}{\bibinfo{person}{Anonymous}.}
+  \bibinfo{year}{2025}\natexlab{b}.
+\newblock \showarticletitle{{GauSTAR}: {Gaussian} Surface Tracking and
+  Reconstruction}.
+\newblock \bibinfo{journal}{\emph{arXiv preprint arXiv:2501.10283}}
+  (\bibinfo{year}{2025}).
+\newblock
+\newblock
+\shownote{Binds Gaussians to mesh faces for dynamic tracking, unbinding on
+  topology change; mesh-bound.}.
+
+
+\bibitem[Anonymous(2025c)]%
+        {omega}
+\bibfield{author}{\bibinfo{person}{Anonymous}.}
+  \bibinfo{year}{2025}\natexlab{c}.
+\newblock \showarticletitle{{OMeGa}: Joint Optimization of Explicit Meshes and
+  {Gaussian} Splats for Robust Scene-Level Surface Reconstruction}.
+\newblock \bibinfo{journal}{\emph{arXiv preprint arXiv:2509.24308}}
+  (\bibinfo{year}{2025}).
+\newblock
+\newblock
+\shownote{Joint optimisation of an explicit mesh and 2D splats expressed in the
+  mesh frame; mesh-bound.}.
+
+
+\bibitem[Anonymous(2025d)]%
+        {valvefit}
+\bibfield{author}{\bibinfo{person}{Anonymous}.}
+  \bibinfo{year}{2025}\natexlab{d}.
+\newblock \showarticletitle{{VALVEFIT}: An Analysis-Suitable {B-spline}-Based
+  Surface Fitting Framework for Patient-Specific Modeling of Tricuspid Valves}.
+\newblock \bibinfo{journal}{\emph{arXiv preprint arXiv:2505.09790}}
+  (\bibinfo{year}{2025}).
+\newblock
+\newblock
+\shownote{GPU-accelerated differentiable B-spline surface fitting from medical
+  point clouds.}.
+
+
+\bibitem[Anonymous(2026a)]%
+        {a2z}
+\bibfield{author}{\bibinfo{person}{Anonymous}.}
+  \bibinfo{year}{2026}\natexlab{a}.
+\newblock \showarticletitle{{A2Z-10M+}: Geometric Deep Learning with {A-to-Z}
+  {BRep} Annotations for {AI-Assisted} {CAD} Modeling and Reverse Engineering}.
+  In \bibinfo{booktitle}{\emph{Proceedings of the IEEE/CVF Conference on
+  Computer Vision and Pattern Recognition (CVPR)}}.
+\newblock
+\newblock
+\shownote{Large-scale multi-modal B-rep annotation dataset and foundation model
+  for CAD reverse engineering.}.
+
+
+\bibitem[Anonymous(2026b)]%
+        {dualbrep}
+\bibfield{author}{\bibinfo{person}{Anonymous}.}
+  \bibinfo{year}{2026}\natexlab{b}.
+\newblock \showarticletitle{{DualBrep}: A Dual-Field Continuous Representation
+  for {B-rep} Modelling}. In \bibinfo{booktitle}{\emph{ACM Transactions on
+  Graphics (SIGGRAPH 2026)}}.
+\newblock
+\newblock
+\shownote{SDF/UDF dual fields for B-rep geometry and topology; flow-matching
+  reconstruction of explicit B-rep from point clouds.}.
+
+
+\bibitem[Anonymous(2026c)]%
+        {manifoldgs}
+\bibfield{author}{\bibinfo{person}{Anonymous}.}
+  \bibinfo{year}{2026}\natexlab{c}.
+\newblock \showarticletitle{Manifold-{GS}: Certified Hybrid Assets via
+  Varifold-Conservative {Gaussian} Splatting}.
+\newblock \bibinfo{journal}{\emph{arXiv preprint arXiv:2608.00214}}
+  (\bibinfo{year}{2026}).
+\newblock
+\newblock
+\shownote{Represents surface-like Gaussians as discrete unoriented varifolds
+  and exports certified surface patches.}.
+
+
+\bibitem[Anonymous(2026d)]%
+        {nurbssplatting}
+\bibfield{author}{\bibinfo{person}{Anonymous}.}
+  \bibinfo{year}{2026}\natexlab{d}.
+\newblock \showarticletitle{{NURBS} Splatting: A Unified Differentiable
+  Rendering Framework for Vector Graphics}. In
+  \bibinfo{booktitle}{\emph{Proceedings of the European Conference on Computer
+  Vision (ECCV)}}.
+\newblock
+\newblock
+\shownote{Renders planar rational spline curves as continuous Gaussian fields;
+  2D precursor of the spline-as-Gaussian-field paradigm.}.
+
+
+\bibitem[Bsan et~al\mbox{.}(2021)]%
+        {nurbsdiff}
+\bibfield{author}{\bibinfo{person}{Busra Bsan}, \bibinfo{person}{Irem Kacar},
+  \bibinfo{person}{Ziya Ozdemir}, \bibinfo{person}{Betul Oztekin},
+  \bibinfo{person}{Yasin Tola}, {and} \bibinfo{person}{Kaya Kumbasar}.}
+  \bibinfo{year}{2021}\natexlab{}.
+\newblock \showarticletitle{{NURBS-Diff}: A Differentiable Programming Module
+  for {NURBS}}.
+\newblock \bibinfo{journal}{\emph{arXiv preprint arXiv:2104.14547}}
+  (\bibinfo{year}{2021}).
+\newblock
+\newblock
+\shownote{Differentiable NURBS curves and surfaces in PyTorch; demonstrated on
+  point-cloud surface fitting.}.
+
+
+\bibitem[de~Koning(2023)]%
+        {nurbspytorch}
+\bibfield{author}{\bibinfo{person}{Bart de Koning}.}
+  \bibinfo{year}{2023}\natexlab{}.
+\newblock \bibinfo{title}{{NURBS-PyTorch}: Differentiable {NURBS} for
+  {PyTorch}}.
+\newblock
+  \bibinfo{howpublished}{\url{https://github.com/SouthEndMusic/NURBS_PyTorch}}.
+\newblock
+\newblock
+\shownote{Earlier differentiable NURBS implementation targeting PINNs; now
+  unmaintained.}.
+
+
+\bibitem[Ebert et~al\mbox{.}(2024)]%
+        {diffnurbs}
+\bibfield{author}{\bibinfo{person}{Jan Ebert} {et~al\mbox{.}}}
+  \bibinfo{year}{2024}\natexlab{}.
+\newblock \bibinfo{title}{{Diff-NURBS}: Automatically Differentiable
+  Pure-Python {NURBS} in {PyTorch}}.
+\newblock
+  \bibinfo{howpublished}{\url{https://github.com/HelmholtzAI-FZJ/Diff-NURBS}}.
+\newblock
+\newblock
+\shownote{Maintained differentiable NURBS library providing closed-form surface
+  derivatives and normals; used as our geometric backbone.}.
+
+
+\bibitem[Foti et~al\mbox{.}(2026)]%
+        {hktex}
+\bibfield{author}{\bibinfo{person}{Simone Foti}, \bibinfo{person}{Caner
+  Korkmaz}, \bibinfo{person}{Stefanos Zafeiriou}, {and} \bibinfo{person}{Tolga
+  Birdal}.} \bibinfo{year}{2026}\natexlab{}.
+\newblock \showarticletitle{Heat Kernel Textures: the Geodesic {Gaussians} That
+  Do Not Splat}. In \bibinfo{booktitle}{\emph{Proceedings of the European
+  Conference on Computer Vision (ECCV)}}.
+\newblock
+\newblock
+\shownote{Anisotropic heat kernels as intrinsic, UV-free textures on triangular
+  meshes; the discrete-manifold precursor of this work.}.
+
+
+\bibitem[Gao et~al\mbox{.}(2023)]%
+        {relightable3dgaussians}
+\bibfield{author}{\bibinfo{person}{Jian Gao}, \bibinfo{person}{Chun Gu},
+  \bibinfo{person}{Youtian Lin}, \bibinfo{person}{Zhihao Li},
+  \bibinfo{person}{Hao Zhu}, \bibinfo{person}{Xun Cao}, \bibinfo{person}{Li
+  Zhang}, {and} \bibinfo{person}{Yao Yao}.} \bibinfo{year}{2023}\natexlab{}.
+\newblock \showarticletitle{Relightable 3D Gaussians: Realistic Point Cloud
+  Relighting with {BRDF} Decomposition and Ray Tracing}.
+\newblock \bibinfo{journal}{\emph{arXiv preprint arXiv:2311.16043}}
+  (\bibinfo{year}{2023}).
+\newblock
+
+
+\bibitem[{GI-GS Authors}(2024)]%
+        {gigs}
+\bibfield{author}{\bibinfo{person}{{GI-GS Authors}}.}
+  \bibinfo{year}{2024}\natexlab{}.
+\newblock \showarticletitle{{GI-GS}: Global Illumination Decomposition on
+  Gaussian Splatting for Inverse Rendering}.
+\newblock \bibinfo{journal}{\emph{arXiv preprint arXiv:2410.02619}}
+  (\bibinfo{year}{2024}).
+\newblock
+\newblock
+\shownote{Deferred shading + G-buffer; BRDF type and normal-mapping status
+  unspecified.}.
+
+
+\bibitem[Gu{\'e}don and Lepetit(2024)]%
+        {sugar}
+\bibfield{author}{\bibinfo{person}{Antoine Gu{\'e}don} {and}
+  \bibinfo{person}{Vincent Lepetit}.} \bibinfo{year}{2024}\natexlab{}.
+\newblock \showarticletitle{{SuGaR}: Surface-Aligned {Gaussian} Splatting for
+  Efficient {3D} Mesh Reconstruction and High-Quality Mesh Rendering}. In
+  \bibinfo{booktitle}{\emph{Proceedings of the IEEE/CVF Conference on Computer
+  Vision and Pattern Recognition (CVPR)}}.
+\newblock
+\newblock
+\shownote{Regularises Gaussians to align with surfaces and binds them to a
+  Poisson mesh; mesh-bound.}.
+
+
+\bibitem[Hall(2022)]%
+        {torchnurbs}
+\bibfield{author}{\bibinfo{person}{Ash Hall}.} \bibinfo{year}{2022}\natexlab{}.
+\newblock \bibinfo{title}{{TorchNurbs}: Differentiable {NURBS} Curve and
+  Surface Evaluation}.
+\newblock \bibinfo{howpublished}{\url{https://github.com/ashwhall/torchnurbs}}.
+\newblock
+\newblock
+\shownote{Differentiable NURBS curve/surface evaluation; explicitly marked
+  unmaintained and incomplete.}.
+
+
+\bibitem[Huang et~al\mbox{.}(2024)]%
+        {2dgaussians}
+\bibfield{author}{\bibinfo{person}{Binbin Huang}, \bibinfo{person}{Zehao Yu},
+  \bibinfo{person}{Anpei Chen}, \bibinfo{person}{Andreas Geiger}, {and}
+  \bibinfo{person}{Shenghua Gao}.} \bibinfo{year}{2024}\natexlab{}.
+\newblock \showarticletitle{2D Gaussian Splatting for Geometrically Accurate
+  Radiance Fields}. In \bibinfo{booktitle}{\emph{ACM SIGGRAPH 2024 Conference
+  Papers}}. \bibinfo{publisher}{ACM}.
+\newblock
+\href{https://doi.org/10.1145/3641519.3657428}{doi:\nolinkurl{10.1145/3641519.3657428}}
+\newblock
+\shownote{arXiv:2403.17888}.
+
+
+\bibitem[Kerbl et~al\mbox{.}(2023)]%
+        {kerbl3Dgaussians}
+\bibfield{author}{\bibinfo{person}{Bernhard Kerbl}, \bibinfo{person}{Georgios
+  Kopanas}, \bibinfo{person}{Thomas Leimk{\"u}hler}, {and}
+  \bibinfo{person}{George Drettakis}.} \bibinfo{year}{2023}\natexlab{}.
+\newblock \showarticletitle{3D Gaussian Splatting for Real-Time Radiance Field
+  Rendering}. In \bibinfo{booktitle}{\emph{ACM Transactions on Graphics
+  (SIGGRAPH 2023)}}, Vol.~\bibinfo{volume}{42}. \bibinfo{publisher}{ACM}.
+\newblock
+\href{https://doi.org/10.1145/3592433}{doi:\nolinkurl{10.1145/3592433}}
+\newblock
+\shownote{arXiv:2308.04079}.
+
+
+\bibitem[Liang et~al\mbox{.}(2024)]%
+        {gusir}
+\bibfield{author}{\bibinfo{person}{Zhihao Liang}, \bibinfo{person}{Hongdong
+  Li}, \bibinfo{person}{Kui Jia}, \bibinfo{person}{Kailing Guo}, {and}
+  \bibinfo{person}{Qi Zhang}.} \bibinfo{year}{2024}\natexlab{}.
+\newblock \showarticletitle{{GUS-IR}: Gaussian Splatting with Unified Shading
+  for Inverse Rendering}.
+\newblock \bibinfo{journal}{\emph{arXiv preprint arXiv:2411.07478}}
+  (\bibinfo{year}{2024}).
+\newblock
+
+
+\bibitem[Liang et~al\mbox{.}(2023)]%
+        {gsir}
+\bibfield{author}{\bibinfo{person}{Zhihao Liang}, \bibinfo{person}{Qi Zhang},
+  \bibinfo{person}{Ying Feng}, \bibinfo{person}{Ying Shan}, {and}
+  \bibinfo{person}{Kui Jia}.} \bibinfo{year}{2023}\natexlab{}.
+\newblock \showarticletitle{{GS-IR}: 3D Gaussian Splatting for Inverse
+  Rendering}.
+\newblock \bibinfo{journal}{\emph{arXiv preprint arXiv:2311.16473}}
+  (\bibinfo{year}{2023}).
+\newblock
+
+
+\bibitem[Sun et~al\mbox{.}(2024)]%
+        {svgir}
+\bibfield{author}{\bibinfo{person}{Hanxiao Sun}, \bibinfo{person}{YuPeng Gao},
+  \bibinfo{person}{Jin Xie}, \bibinfo{person}{Jian Yang}, {and}
+  \bibinfo{person}{Beibei Wang}.} \bibinfo{year}{2024}\natexlab{}.
+\newblock \showarticletitle{{SVG-IR}: Spatially-Varying Gaussian Splatting for
+  Inverse Rendering}.
+\newblock \bibinfo{journal}{\emph{arXiv preprint arXiv:2504.06815}}
+  (\bibinfo{year}{2024}).
+\newblock
+
+
+\bibitem[{TextureSplat Authors}(2025)]%
+        {texturesplat}
+\bibfield{author}{\bibinfo{person}{{TextureSplat Authors}}.}
+  \bibinfo{year}{2025}\natexlab{}.
+\newblock \showarticletitle{{TextureSplat}: Per-Primitive Texture Mapping for
+  Reflective Gaussian Splatting}.
+\newblock \bibinfo{journal}{\emph{arXiv preprint arXiv:2506.13348}}
+  (\bibinfo{year}{2025}).
+\newblock
+\newblock
+\shownote{Per-primitive spatially-varying normals and materials via texture
+  maps. Closest to contribution 1; BRDF anisotropy unconfirmed.}.
+
+
+\bibitem[Wu et~al\mbox{.}(2024)]%
+        {deferredgs}
+\bibfield{author}{\bibinfo{person}{Tong Wu}, \bibinfo{person}{Jia-Mu Sun},
+  \bibinfo{person}{Yu-Kun Lai}, \bibinfo{person}{Yuewen Ma},
+  \bibinfo{person}{Leif Kobbelt}, {and} \bibinfo{person}{Lin Gao}.}
+  \bibinfo{year}{2024}\natexlab{}.
+\newblock \showarticletitle{{DeferredGS}: Decoupled and Editable Gaussian
+  Splatting with Deferred Shading}.
+\newblock \bibinfo{journal}{\emph{arXiv preprint arXiv:2404.09412}}
+  (\bibinfo{year}{2024}).
+\newblock
+\newblock
+\shownote{G-buffer architecture; closest to contribution 3.}.
+
+
+\bibitem[Ye et~al\mbox{.}(2024)]%
+        {geosplatting}
+\bibfield{author}{\bibinfo{person}{Kai Ye}, \bibinfo{person}{Chong Gao},
+  \bibinfo{person}{Guanbin Li}, \bibinfo{person}{Wenzheng Chen}, {and}
+  \bibinfo{person}{Baoquan Chen}.} \bibinfo{year}{2024}\natexlab{}.
+\newblock \showarticletitle{{GeoSplatting}: Towards Geometry Guided Gaussian
+  Splatting for Physically-based Inverse Rendering}.
+\newblock \bibinfo{journal}{\emph{arXiv preprint arXiv:2410.24204}}
+  (\bibinfo{year}{2024}).
+\newblock
+
+
+\bibitem[Zhou et~al\mbox{.}(2025)]%
+        {rtrgs}
+\bibfield{author}{\bibinfo{person}{Yongyang Zhou}, \bibinfo{person}{Fang-Lue
+  Zhang}, \bibinfo{person}{Zichen Wang}, {and} \bibinfo{person}{Lei Zhang}.}
+  \bibinfo{year}{2025}\natexlab{}.
+\newblock \showarticletitle{{RTR-GS}: 3D Gaussian Splatting for Inverse
+  Rendering with Radiance Transfer and Reflection}.
+\newblock \bibinfo{journal}{\emph{arXiv preprint arXiv:2507.07733}}
+  (\bibinfo{year}{2025}).
+\newblock
+
+
+\end{thebibliography}

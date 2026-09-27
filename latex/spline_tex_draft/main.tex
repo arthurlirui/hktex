@@ -1,0 +1,193 @@
+%% Spline-Texture: B-spline surfaces with heat-kernel (geodesic Gaussian) appearance.
+%% Standalone draft for the spline + HKTex fusion idea.
+%% Compile with:  pdflatex main -> bibtex main -> pdflatex main -> pdflatex main
+\documentclass[acmtog, review=true, authorversion=false]{acmart}
+
+%% --- Packages ---
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage{subcaption}
+\usepackage{listings}
+\usepackage{hyperref}
+
+%% --- Custom math macros ---
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\mat}[1]{\mathbf{#1}}
+\DeclareMathOperator{\ASG}{ASG}
+\DeclareMathOperator{\BRDF}{BRDF}
+
+%% --- ACM metadata: replace with real values before submission ---
+\acmJournal{TOG}
+\acmVolume{0}
+\acmNumber{0}
+\acmArticle{0}
+\acmMonth{0}
+\acmYear{2026}
+
+\begin{document}
+
+\title{Spline-Textures: Heat-Kernel Appearance on Differentiable B-Spline Surfaces}
+
+\author{Anonymous Author}
+\email{anonymous@example.com}
+\affiliation{%
+  \institution{Anonymous Institution}
+  \city{City}
+  \country{Country}
+}
+
+\begin{abstract}
+We present \emph{Spline-Textures}, a representation that generalises Heat
+Kernel Textures (HKTex) from discrete triangular meshes to smooth,
+differentiable B-spline surfaces. The key observation is that on a parametric
+surface the first fundamental form is available in closed form and is
+everywhere differentiable with respect to the control points, so the
+anisotropic heat kernels that HKTex approximates on meshes via discrete
+Laplacian eigen-decompositions and $k$-nearest-neighbour heat propagation
+admit a direct, analytic definition on the parameter domain. Concretely,
+each kernel becomes an anisotropic Gaussian whose covariance is the inverse
+metric tensor at the kernel centre, eliminating geodesic distance
+approximation entirely. Building on a differentiable NURBS backend, our
+formulation jointly optimises surface geometry (control points) and
+appearance (kernel parameters) from multi-view images through a single
+differentiable rendering pipeline, yielding CAD-native smooth surfaces with
+high-fidelity intrinsic textures. We position our contribution at the
+intersection of three otherwise-disjoint literatures---differentiable CAD,
+surface-bound Gaussian splatting, and intrinsic mesh textures---and show
+that this intersection has remained empty.
+\end{abstract}
+
+\ccsdesc[500]{Computing methodologies~Shape modeling}
+\ccsdesc[300]{Computing methodologies~Rendering}
+
+\keywords{B-spline, NURBS, heat kernel textures, Gaussian splatting,
+differentiable rendering, inverse rendering}
+
+\maketitle
+
+% =============================================================
+\section{Introduction}\label{sec:intro}
+
+Three-dimensional Gaussian Splatting (3DGS)~\cite{kerbl3Dgaussians} has
+established explicit Gaussian primitives as a dominant representation for
+real-time novel-view synthesis. A well-known limitation, however, is that
+the underlying geometry is a fuzzy cloud of oriented Gaussians rather than a
+clean, editable surface; extracting a usable mesh requires post-hoc
+regularisation~\cite{sugar} or binding primitives to a separate
+mesh~\cite{omega, meshgs, gaustar}. In all such cases the surface carrier is
+a \emph{discrete} triangular mesh: $C^0$ across edges, with no analytic
+metric, and disconnected from the CAD boundary representations (B-spline and
+NURBS surfaces) that manufacturing pipelines actually consume.
+
+Heat Kernel Textures (HKTex)~\cite{hktex} address the \emph{appearance} side
+of a related problem: rather than UV atlases, they represent texture as
+anisotropic heat kernels---the geodesic counterparts of Gaussians---defined
+intrinsically on a triangular mesh. Kernels live in barycentric coordinates,
+are densified and pruned on the surface, and avoid UV seams, distortion, and
+wasted atlas space. Their computation, however, depends on a discrete
+Laplacian eigen-decomposition and $k$-nearest-neighbour heat propagation,
+which are inherently mesh-discrete artefacts.
+
+In this paper we observe that both limitations---the discrete surface carrier
+of binding-GS and the discrete metric of HKTex---share a single root cause:
+the triangular mesh. We therefore replace it with a smooth, differentiable
+B-spline surface and show that the HKTex machinery simplifies rather than
+complicates: the first fundamental form
+$g = (E,F;F,G)$ is available in closed form from the surface partial
+derivatives, so each anisotropic heat kernel reduces to a Gaussian on the
+$(u,v)$ domain whose covariance is $g^{-1}$, with no geodesic distance
+computation and no eigen-decomposition. Because $g$ is differentiable in the
+control points, appearance and geometry are coupled in one differentiable
+graph, enabling joint optimisation from multi-view images---something neither
+HKTex (fixed mesh) nor binding-GS (mesh, no analytic metric) can do.
+
+\paragraph{Contributions.}
+\begin{itemize}
+  \item A formulation of anisotropic heat-kernel appearance on
+        differentiable B-spline surfaces, where kernel covariance is the
+        closed-form inverse metric tensor, eliminating geodesic distance
+        approximation (\S\ref{sec:method}).
+  \item A joint geometry--appearance optimisation framework that updates
+        B-spline control points and kernel parameters simultaneously from
+        multi-view images through a differentiable subdivision-and-splat
+        rendering pipeline.
+  \item A positioning of this work at an empty intersection of
+        differentiable CAD, surface-bound Gaussian splatting, and intrinsic
+        mesh textures, supported by a structured survey of adjacent
+        literatures (\S\ref{sec:related}).
+\end{itemize}
+
+% =============================================================
+\input{related_work}
+
+% =============================================================
+\section{Method}\label{sec:method}
+
+\subsection{Preliminaries: B-spline surfaces}
+A tensor-product B-spline surface of degrees $(p,q)$ is
+\[
+  S(u,v) = \sum_{i}\sum_{j} N_{i,p}(u)\,N_{j,q}(v)\,P_{ij},
+  \qquad (u,v)\in[0,1]^2,
+\]
+with control points $P_{ij}\in\mathbb{R}^3$, basis functions $N_{i,p}$, and
+knot vectors. Its partial derivatives $\partial_u S$, $\partial_v S$ are
+again B-spline surfaces of lower degree, available in closed form and
+differentiable in the control points via automatic
+differentiation~\cite{nurbsdiff,diffnurbs}.
+
+\subsection{Metric tensor and heat-kernel covariance}
+The first fundamental form at $(u,v)$ is
+\[
+  g(u,v)=\begin{pmatrix}E&F\\F&G\end{pmatrix},\quad
+  E=\partial_uS\!\cdot\!\partial_uS,\;
+  F=\partial_uS\!\cdot\!\partial_vS,\;
+  G=\partial_vS\!\cdot\!\partial_vS.
+\]
+An anisotropic heat kernel centred at $(u_0,v_0)$ with diffusion time
+$\sigma^2$ takes the parametrix form
+\[
+  \mathcal{K}(u,v)\propto
+  \exp\!\Bigl(-\tfrac{1}{4\sigma^2}\,\Delta\vect{u}^{\!\top}\,
+    g^{-1}(u_0,v_0)\,\Delta\vect{u}\Bigr),
+  \quad \Delta\vect{u}=(u-u_0,\,v-v_0),
+\]
+optionally modulated by a learnable anisotropy matrix. On a mesh, HKTex must
+approximate this quantity via discrete Laplacian spectra and KNN heat
+propagation; on a B-spline surface it is closed-form.
+
+\subsection{Rendering}
+Ray--spline intersection has no closed form. We adopt a differentiable
+subdivision route: control points are adaptively subdivided into a dense
+triangular mesh, gradients flow back through the subdivision matrix, and the
+existing Mitsuba-based ray renderer is reused. Appearance at a hit point with
+parameter $(u,v)$ is $\sum_k \alpha_k\,\mathcal{K}_k(u,v)\,c_k$.
+
+\subsection{Optimisation}
+Two stages. (i)~\emph{Fixed geometry}: fit appearance to a textured spline,
+directly paralleling HKTex and validating the metric-kernel formulation.
+(ii)~\emph{Joint}: optimise control points and kernels jointly from
+multi-view images, with area and curvature regularisation and an
+appearance--geometry decoupling schedule to prevent the appearance from
+absorbing geometric error.
+
+% =============================================================
+\section{Results}\label{sec:results}
+Placeholder for experiments on CAD-class objects (spheres, cylinders,
+bottles), comparison against HKTex~\cite{hktex} on fixed geometry and
+SuGaR~\cite{sugar}/OMeGa~\cite{omega} on joint geometry--appearance.
+
+% =============================================================
+\section{Conclusion}\label{sec:conclusion}
+We presented Spline-Textures, which lifts Heat Kernel Textures from
+discrete meshes to differentiable B-spline surfaces, replacing geodesic
+distance approximation with closed-form metric-tensor covariance and
+enabling joint geometry--appearance optimisation from images. The output is
+a CAD-native smooth surface with intrinsic texture, inaccessible to existing
+mesh-bound Gaussian or heat-kernel representations.
+
+\bibliographystyle{ACM-Reference-Format}
+\bibliography{../references}
+
+\end{document}

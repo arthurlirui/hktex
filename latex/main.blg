@@ -1,0 +1,113 @@
+This is BibTeX, Version 0.99d (TeX Live 2024)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: main.aux
+The style file: ACM-Reference-Format.bst
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Database file #1: references.bib
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 9000 items from 6000.
+Reallocated glb_str_ptr (elt_size=4) to 20 items from 10.
+Reallocated global_strs (elt_size=200001) to 20 items from 10.
+Reallocated glb_str_end (elt_size=4) to 20 items from 10.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Warning--no number and no volume in surf3dss
+Warning--page numbers missing in both pages and numpages fields in surf3dss
+Warning--empty publisher in burley2012disney
+Warning--empty address in burley2012disney
+Warning--page numbers missing in both pages and numpages fields in burley2012disney
+Warning--no number and no volume in psgs
+Warning--page numbers missing in both pages and numpages fields in psgs
+Warning--no number and no volume in glossgau
+Warning--page numbers missing in both pages and numpages fields in glossgau
+Warning--no number and no volume in relightable3dgaussians
+Warning--page numbers missing in both pages and numpages fields in relightable3dgaussians
+Warning--no number and no volume in gigs
+Warning--page numbers missing in both pages and numpages fields in gigs
+Warning--no number and no volume in gogs
+Warning--page numbers missing in both pages and numpages fields in gogs
+Warning--empty address in 2dgaussians
+Warning--page numbers missing in both pages and numpages fields in 2dgaussians
+Warning--can't use both volume and number fields in kerbl3Dgaussians
+Warning--empty address in kerbl3Dgaussians
+Warning--page numbers missing in both pages and numpages fields in kerbl3Dgaussians
+Warning--no number and no volume in rgsdr
+Warning--page numbers missing in both pages and numpages fields in rgsdr
+Warning--no number and no volume in specglosssurfels
+Warning--page numbers missing in both pages and numpages fields in specglosssurfels
+Warning--no number and no volume in gusir
+Warning--page numbers missing in both pages and numpages fields in gusir
+Warning--no number and no volume in gsir
+Warning--page numbers missing in both pages and numpages fields in gsir
+Warning--no number and no volume in rosgs
+Warning--page numbers missing in both pages and numpages fields in rosgs
+Warning--empty publisher in nvdiffrec
+Warning--empty address in nvdiffrec
+Warning--no number and no volume in ssdgs
+Warning--page numbers missing in both pages and numpages fields in ssdgs
+Warning--no number and no volume in svgir
+Warning--page numbers missing in both pages and numpages fields in svgir
+Warning--no number and no volume in texturesplat
+Warning--page numbers missing in both pages and numpages fields in texturesplat
+Warning--empty publisher in walter2007microfacet
+Warning--empty address in walter2007microfacet
+Warning--empty publisher in wang2009sphericalgaussian
+Warning--empty address in wang2009sphericalgaussian
+Warning--page numbers missing in both pages and numpages fields in wang2009sphericalgaussian
+Warning--no number and no volume in specgaussianlf
+Warning--page numbers missing in both pages and numpages fields in specgaussianlf
+Warning--no number and no volume in deferredgs
+Warning--page numbers missing in both pages and numpages fields in deferredgs
+Warning--can't use both volume and number fields in xu2013anisg
+Warning--empty publisher in xu2013anisg
+Warning--empty address in xu2013anisg
+Warning--page numbers missing in both pages and numpages fields in xu2013anisg
+Warning--empty address in specgaussian
+Warning--page numbers missing in both pages and numpages fields in specgaussian
+Warning--no number and no volume in geosplatting
+Warning--page numbers missing in both pages and numpages fields in geosplatting
+Warning--no number and no volume in rtrgs
+Warning--page numbers missing in both pages and numpages fields in rtrgs
+You've used 27 entries,
+            6335 wiz_defined-function locations,
+            1670 strings with 24443 characters,
+and the built_in function-call counts, 29908 in all, are:
+= -- 4121
+> -- 1088
+< -- 0
++ -- 364
+- -- 362
+* -- 2183
+:= -- 2806
+add.period$ -- 146
+call.type$ -- 27
+change.case$ -- 218
+chr.to.int$ -- 26
+cite$ -- 84
+duplicate$ -- 2519
+empty$ -- 1832
+format.name$ -- 445
+if$ -- 7617
+int.to.chr$ -- 3
+int.to.str$ -- 1
+missing$ -- 116
+newline$ -- 285
+num.names$ -- 188
+pop$ -- 1158
+preamble$ -- 1
+purify$ -- 432
+quote$ -- 0
+skip$ -- 760
+stack$ -- 0
+substring$ -- 1703
+swap$ -- 145
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 541
+warning$ -- 57
+while$ -- 118
+width$ -- 0
+write$ -- 562
+(There were 57 warnings)
