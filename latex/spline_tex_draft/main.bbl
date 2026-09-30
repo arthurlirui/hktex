@@ -2,26 +2,27 @@
 %%% Do NOT edit. File created by BibTeX with style
 %%% ACM-Reference-Format-Journals [18-Jan-2012].
 
-\begin{thebibliography}{28}
+\begin{thebibliography}{42}
 
 %%% ====================================================================
 %%% NOTE TO THE USER: you can override these defaults by providing
 %%% customized versions of any of these macros before the \bibliography
 %%% command.  Each of them MUST provide its own final punctuation,
-%%% except for \shownote{} and \showURL{}.  The latter does
-%%% not use final punctuation, in order to avoid confusing it with
+%%% except for \shownote{}, \showDOI{}, and \showURL{}.  The latter two
+%%% do not use final punctuation, in order to avoid confusing it with
 %%% the Web address.
 %%%
 %%% To suppress output of a particular field, define its macro to expand
 %%% to an empty string, or better, \unskip, like this:
 %%%
-%%% \newcommand{\showURL}[1]{\unskip}   % LaTeX syntax
+%%% \newcommand{\showDOI}[1]{\unskip}   % LaTeX syntax
 %%%
-%%% \def \showURL #1{\unskip}           % plain TeX syntax
+%%% \def \showDOI #1{\unskip}           % plain TeX syntax
 %%%
 %%% ====================================================================
 
 \ifx \showCODEN    \undefined \def \showCODEN     #1{\unskip}     \fi
+\ifx \showDOI      \undefined \def \showDOI       #1{#1}\fi
 \ifx \showISBNx    \undefined \def \showISBNx     #1{\unskip}     \fi
 \ifx \showISBNxiii \undefined \def \showISBNxiii  #1{\unskip}     \fi
 \ifx \showISSN     \undefined \def \showISSN      #1{\unskip}     \fi
@@ -35,10 +36,6 @@
 \providecommand\bibinfo[2]{#2}
 \providecommand\natexlab[1]{#1}
 \providecommand\showeprint[2][]{arXiv:#2}
-\makeatletter
-\@ifundefined{NAT@parse@date}{}{\let\NAT@parse@date@orig\NAT@parse@date}
-\@ifundefined{NAT@parse@date}{}{\def\NAT@parse@date#1#2#3#4#5#6@@{\NAT@parse@date@orig#1#2#3#4#5#6@@\def\NAT@tempyear{0000}\def\NAT@tempexlab{{?}}\ifx\NAT@year\NAT@tempyear\ifx\NAT@exlab\NAT@tempexlab\def\NAT@date{[n.\,d.]}\else\edef\NAT@date{[n.\,d.]\NAT@exlab}\fi\fi}}
-\makeatother
 
 \bibitem[Anonymous(2022)]%
         {diffsubsurf}
@@ -208,6 +205,17 @@
   point-cloud surface fitting.}.
 
 
+\bibitem[Connor(2016)]%
+        {connor2016harmonic}
+\bibfield{author}{\bibinfo{person}{Peter Connor}.}
+  \bibinfo{year}{2016}\natexlab{}.
+\newblock \showarticletitle{Harmonic Parametrizations of Surfaces of Arbitrary
+  Genus}.
+\newblock \bibinfo{journal}{\emph{arXiv preprint arXiv:1602.05265}}
+  (\bibinfo{year}{2016}).
+\newblock
+
+
 \bibitem[de~Koning(2023)]%
         {nurbspytorch}
 \bibfield{author}{\bibinfo{person}{Bart de Koning}.}
@@ -222,6 +230,24 @@
   unmaintained.}.
 
 
+\bibitem[Ding et~al\mbox{.}(2026)]%
+        {viewdepkernels}
+\bibfield{author}{\bibinfo{person}{Huakeng Ding}, \bibinfo{person}{Zhanpeng
+  Liu}, \bibinfo{person}{Fan Pei}, \bibinfo{person}{Kun Zhou}, {and}
+  \bibinfo{person}{Hongzhi Wu}.} \bibinfo{year}{2026}\natexlab{}.
+\newblock \showarticletitle{Learning View-Dependent Splatting Kernels}. In
+  \bibinfo{booktitle}{\emph{ACM Transactions on Graphics (SIGGRAPH 2026
+  Conference Papers)}}.
+\newblock
+\urldef\tempurl%
+\url{https://doi.org/10.1145/3799902.3811064}
+\showDOI{\tempurl}
+\newblock
+\shownote{Learns view-dependent 2D splatting kernels; identifies B-spline
+  kernels (SplineSplat) as a view-independent family lacking cross-view 3D
+  consistency.}.
+
+
 \bibitem[Ebert et~al\mbox{.}(2024)]%
         {diffnurbs}
 \bibfield{author}{\bibinfo{person}{Jan Ebert} {et~al\mbox{.}}}
@@ -234,6 +260,22 @@
 \newblock
 \shownote{Maintained differentiable NURBS library providing closed-form surface
   derivatives and normals; used as our geometric backbone.}.
+
+
+\bibitem[Fan et~al\mbox{.}(2024)]%
+        {neuronurbs}
+\bibfield{author}{\bibinfo{person}{Jiajie Fan}, \bibinfo{person}{Babak
+  Gholami}, \bibinfo{person}{Thomas B{\"a}ck}, {and} \bibinfo{person}{Hao
+  Wang}.} \bibinfo{year}{2024}\natexlab{}.
+\newblock \showarticletitle{{NeuroNURBS}: Learning Efficient Surface
+  Representations for {3D} Solids}.
+\newblock \bibinfo{journal}{\emph{arXiv preprint arXiv:2411.10848}}
+  (\bibinfo{year}{2024}).
+\newblock
+\newblock
+\shownote{Learns compact NURBS surface representations directly from B-rep
+  parameters; complementary generative CAD line that could supply initial
+  geometry for our joint optimisation.}.
 
 
 \bibitem[Foti et~al\mbox{.}(2026)]%
@@ -261,6 +303,20 @@
 \newblock \bibinfo{journal}{\emph{arXiv preprint arXiv:2311.16043}}
   (\bibinfo{year}{2023}).
 \newblock
+
+
+\bibitem[George and Thomas(2025)]%
+        {splinesplat}
+\bibfield{author}{\bibinfo{person}{Nygel George} {and}
+  \bibinfo{person}{C.~Seelamantula Thomas}.} \bibinfo{year}{2025}\natexlab{}.
+\newblock \showarticletitle{{SplineSplat}: Representing Radiance Fields Using
+  {B-Splines}}. In \bibinfo{booktitle}{\emph{SIGGRAPH Asia 2025 Technical
+  Communications}}.
+\newblock
+\newblock
+\shownote{Replaces the Gaussian splatting kernel with a B-spline kernel;
+  matches 3DGS fidelity at up to 18\% lower training time. Orthogonal to our
+  work: swaps the kernel, not the carrier.}.
 
 
 \bibitem[{GI-GS Authors}(2024)]%
@@ -312,9 +368,23 @@
   Radiance Fields}. In \bibinfo{booktitle}{\emph{ACM SIGGRAPH 2024 Conference
   Papers}}. \bibinfo{publisher}{ACM}.
 \newblock
-\href{https://doi.org/10.1145/3641519.3657428}{doi:\nolinkurl{10.1145/3641519.3657428}}
+\urldef\tempurl%
+\url{https://doi.org/10.1145/3641519.3657428}
+\showDOI{\tempurl}
 \newblock
 \shownote{arXiv:2403.17888}.
+
+
+\bibitem[Kazhdan et~al\mbox{.}(2003)]%
+        {kazhdan2003sh}
+\bibfield{author}{\bibinfo{person}{Michael Kazhdan}, \bibinfo{person}{Thomas
+  Funkhouser}, {and} \bibinfo{person}{Szymon Rusinkiewicz}.}
+  \bibinfo{year}{2003}\natexlab{}.
+\newblock \showarticletitle{Rotation Invariant Spherical Harmonic
+  Representation of {3D} Shape Descriptors}. In
+  \bibinfo{booktitle}{\emph{Eurographics/ACM SIGGRAPH Symposium on Geometry
+  Processing}}. \bibinfo{pages}{156--164}.
+\newblock
 
 
 \bibitem[Kerbl et~al\mbox{.}(2023)]%
@@ -326,9 +396,25 @@
   Rendering}. In \bibinfo{booktitle}{\emph{ACM Transactions on Graphics
   (SIGGRAPH 2023)}}, Vol.~\bibinfo{volume}{42}. \bibinfo{publisher}{ACM}.
 \newblock
-\href{https://doi.org/10.1145/3592433}{doi:\nolinkurl{10.1145/3592433}}
+\urldef\tempurl%
+\url{https://doi.org/10.1145/3592433}
+\showDOI{\tempurl}
 \newblock
 \shownote{arXiv:2308.04079}.
+
+
+\bibitem[Kuhl and Giardina(1982)]%
+        {kuhlgiardina1982}
+\bibfield{author}{\bibinfo{person}{Frank~P. Kuhl} {and}
+  \bibinfo{person}{Charles~R. Giardina}.} \bibinfo{year}{1982}\natexlab{}.
+\newblock \showarticletitle{Elliptic Fourier Features of a Closed Contour}.
+\newblock \bibinfo{journal}{\emph{Computer Graphics and Image Processing}}
+  \bibinfo{volume}{18}, \bibinfo{number}{3} (\bibinfo{year}{1982}),
+  \bibinfo{pages}{236--258}.
+\newblock
+\urldef\tempurl%
+\url{https://doi.org/10.1016/0146-664X(82)90034-X}
+\showDOI{\tempurl}
 
 
 \bibitem[Liang et~al\mbox{.}(2024)]%
@@ -355,6 +441,88 @@
 \newblock
 
 
+\bibitem[Niculescu et~al\mbox{.}(2002)]%
+        {niculescu2002doubleefd}
+\bibfield{author}{\bibinfo{person}{Gabriela Niculescu}, \bibinfo{person}{Louay
+  Toni}, \bibinfo{person}{David~J. Foran}, \bibinfo{person}{John~L. Nosher},
+  {and} \bibinfo{person}{J.~Kevin DeMarco}.} \bibinfo{year}{2002}\natexlab{}.
+\newblock \showarticletitle{A Dynamic Imaging Database for {3-D} Morphologic
+  Analysis and Clinical Assessment in Diagnostic Radiology}.
+\newblock \bibinfo{journal}{\emph{AMIA Annual Symposium Proceedings}}
+  (\bibinfo{year}{2002}), \bibinfo{pages}{1115}.
+\newblock
+
+
+\bibitem[Sapoutzoglou et~al\mbox{.}(2026)]%
+        {sapoutzoglou2026sharc}
+\bibfield{author}{\bibinfo{person}{Panagiotis Sapoutzoglou},
+  \bibinfo{person}{George Terzakis}, {and} \bibinfo{person}{Maria Pateraki}.}
+  \bibinfo{year}{2026}\natexlab{}.
+\newblock \showarticletitle{{SHARC}: Reference Point Driven Spherical Harmonic
+  Representation for Complex Shapes}.
+\newblock \bibinfo{journal}{\emph{arXiv preprint arXiv:2604.01894}}
+  (\bibinfo{year}{2026}).
+\newblock
+
+
+\bibitem[Shaqfa and van Rees(2024)]%
+        {shaqfarees2024soh}
+\bibfield{author}{\bibinfo{person}{Mahmoud Shaqfa} {and}
+  \bibinfo{person}{Wim~M. van Rees}.} \bibinfo{year}{2024}\natexlab{}.
+\newblock \showarticletitle{Spheroidal Harmonics for Generalizing the
+  Morphological Decomposition of Closed Parametric Surfaces}.
+\newblock \bibinfo{journal}{\emph{Physical Review X}} (\bibinfo{year}{2024}).
+\newblock
+\newblock
+\shownote{Spheroidal-harmonic generalisation of SPHARM for oblate/prolate
+  particles; three mapping techniques (rSOH, hSOH, c-rSOH) for star-shaped and
+  non-star-shaped surfaces.}.
+
+
+\bibitem[Shen et~al\mbox{.}(2009)]%
+        {shen2009spharm}
+\bibfield{author}{\bibinfo{person}{Li Shen}, \bibinfo{person}{Hany Farid},
+  {and} \bibinfo{person}{Mark~A. McPeek}.} \bibinfo{year}{2009}\natexlab{}.
+\newblock \showarticletitle{Modeling Three-Dimensional Morphological Structures
+  Using Spherical Harmonics}.
+\newblock \bibinfo{journal}{\emph{Evolution}} \bibinfo{volume}{63},
+  \bibinfo{number}{4} (\bibinfo{year}{2009}), \bibinfo{pages}{1003--1016}.
+\newblock
+\urldef\tempurl%
+\url{https://doi.org/10.1111/j.1558-5646.2008.00557.x}
+\showDOI{\tempurl}
+
+
+\bibitem[Sijbers et~al\mbox{.}(2002)]%
+        {sijbers2002fd3d}
+\bibfield{author}{\bibinfo{person}{Jan Sijbers}, \bibinfo{person}{Tom
+  Ceulemans}, {and} \bibinfo{person}{Dirk Van~Dyck}.}
+  \bibinfo{year}{2002}\natexlab{}.
+\newblock \showarticletitle{Algorithm for the Computation of {3D} {Fourier}
+  Descriptors}. In \bibinfo{booktitle}{\emph{Proceedings of the 16th
+  International Conference on Pattern Recognition (ICPR)}}.
+  \bibinfo{pages}{1067--1070}.
+\newblock
+\urldef\tempurl%
+\url{https://doi.org/10.1109/ICPR.2002.1048420}
+\showDOI{\tempurl}
+
+
+\bibitem[Staib and Duncan(1996)]%
+        {staibduncan1996}
+\bibfield{author}{\bibinfo{person}{Lawrence~H. Staib} {and}
+  \bibinfo{person}{James~S. Duncan}.} \bibinfo{year}{1996}\natexlab{}.
+\newblock \showarticletitle{Deformable {Fourier} Models for Surface Finding in
+  3-{D} Images}.
+\newblock \bibinfo{journal}{\emph{IEEE Transactions on Medical Imaging}}
+  \bibinfo{volume}{15}, \bibinfo{number}{6} (\bibinfo{year}{1996}),
+  \bibinfo{pages}{916--923}.
+\newblock
+\urldef\tempurl%
+\url{https://doi.org/10.1109/42.539940}
+\showDOI{\tempurl}
+
+
 \bibitem[Sun et~al\mbox{.}(2024)]%
         {svgir}
 \bibfield{author}{\bibinfo{person}{Hanxiao Sun}, \bibinfo{person}{YuPeng Gao},
@@ -379,6 +547,36 @@
 \newblock
 \shownote{Per-primitive spatially-varying normals and materials via texture
   maps. Closest to contribution 1; BRDF anisotropy unconfirmed.}.
+
+
+\bibitem[Vrani{\'c} and Saupe(2001)]%
+        {vranisaupe2001dft}
+\bibfield{author}{\bibinfo{person}{Dejan~V. Vrani{\'c}} {and}
+  \bibinfo{person}{Dietmar Saupe}.} \bibinfo{year}{2001}\natexlab{}.
+\newblock \showarticletitle{{3D} Shape Descriptor Based on {3D} {Fourier}
+  Transform}.
+\newblock \bibinfo{journal}{\emph{Proceedings of the EURASIP Conference on
+  Digital Signal Processing for Multimedia Communications and Services}}
+  (\bibinfo{year}{2001}), \bibinfo{pages}{271--274}.
+\newblock
+
+
+\bibitem[Worchel and Alexa(2023)]%
+        {worchelalexa2023}
+\bibfield{author}{\bibinfo{person}{Markus Worchel} {and} \bibinfo{person}{Marc
+  Alexa}.} \bibinfo{year}{2023}\natexlab{}.
+\newblock \showarticletitle{Differentiable Rendering of Parametric Geometry}.
+\newblock \bibinfo{journal}{\emph{ACM Transactions on Graphics (Proceedings of
+  SIGGRAPH Asia)}} \bibinfo{volume}{42}, \bibinfo{number}{6}
+  (\bibinfo{year}{2023}), \bibinfo{pages}{232:1--232:18}.
+\newblock
+\urldef\tempurl%
+\url{https://doi.org/10.1145/3618381}
+\showDOI{\tempurl}
+\newblock
+\shownote{Differentiable meshing operators for B\'ezier/B-spline/NURBS
+  surfaces, enabling image-based inverse graphics on parametric geometry; the
+  geometry-only precursor of our joint geometry--appearance pipeline.}.
 
 
 \bibitem[Wu et~al\mbox{.}(2024)]%

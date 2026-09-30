@@ -1,11 +1,12 @@
 % =============================================================
 \section{Related Work}\label{sec:related}
 
-Our contribution sits at the confluence of three literatures that have, to
+Our contribution sits at the confluence of four literatures that have, to
 date, evolved in isolation: (i)~differentiable parametric surface modelling
-for CAD, (ii)~surface-bound or surface-extracted Gaussian splatting, and
-(iii)~intrinsic texture representations on manifolds. We review each in turn
-and identify the empty intersection that motivates this work
+for CAD, (ii)~surface-bound or surface-extracted Gaussian splatting,
+(iii)~intrinsic texture representations on manifolds, and
+(iv)~Fourier and harmonic representations of closed surfaces. We review
+each in turn and identify the empty intersection that motivates this work
 (\autoref{tab:landscape}).
 
 % -------------------------------------------------------------
@@ -26,6 +27,28 @@ limitation of this entire family is the absence of a rendering pipeline: the
 fitting signal is a point cloud or a prescribed loss, never multi-view
 images, so the geometric and appearance channels have not been coupled
 end-to-end with a differentiable renderer.
+
+\paragraph{Differentiable rendering of parametric surfaces.}
+Worchel and Alexa~\cite{worchelalexa2023} (SIGGRAPH Asia~2023) directly address
+this gap: they derive differentiable meshing operators that extract a
+representative triangle mesh from a continuous parametric surface
+(B\'ezier, B-spline, NURBS) in a differentiable way, enabling image-based
+inverse graphics on parametric geometry with coarse-to-fine regularisation.
+Our rendering pipeline adopts the same differentiable-subdivision principle
+(our \texttt{SplineSurface.to\_mesh} bridge), but extends the formulation from
+\emph{geometry-only} reconstruction to \emph{joint geometry--appearance}
+optimisation: their method optimises control points against silhouette/image
+losses with no surface appearance field, whereas we couple the control points
+to an intrinsic heat-kernel texture whose covariance is the analytic metric of
+the very surface being rendered.
+
+\paragraph{Learning NURBS representations.}
+NeuroNURBS~\cite{neuronurbs} learns compact NURBS surface representations for
+3D solids directly from B-rep parameters, reducing GPU consumption by
+\ensuremath{\sim}87\% over UV-grid approximations and producing smoother
+generated surfaces. This line is complementary to ours: NeuroNURBS targets
+generative solid modelling from CAD data, not image-based rendering, and could
+supply initial B-spline geometry for our joint optimisation.
 
 \paragraph{Differentiable subdivision surfaces.}
 As an alternative to parametric splines, differentiable subdivision surface
@@ -61,6 +84,23 @@ there is no 3D surface, no multi-view consistency, and no joint
 geometry--appearance optimisation. Our work can be read as the
 three-dimensional, image-driven generalisation of this idea to B-spline
 \emph{surfaces} carrying intrinsic heat-kernel appearance.
+
+\paragraph{B-spline splatting kernels.}
+A closely related but distinct use of B-splines replaces the Gaussian
+\emph{kernel} itself in a splatting pipeline. SplineSplat~\cite{splinesplat}
+(SIGGRAPH Asia~2025 Technical Communications) represents the radiance field
+with B-spline kernels instead of Gaussians, matching 3DGS reconstruction
+fidelity while reducing training time by up to 18\%. The view-dependent
+splatting-kernel framework of Ding et al.~\cite{viewdepkernels}
+(SIGGRAPH~2026) further generalises this idea and explicitly identifies
+B-spline kernels~\cite{splinesplat} as a view-independent 2D-kernel family
+that lacks cross-view 3D consistency. Crucially, both works keep the
+\emph{primitive cloud} representation of 3DGS---the B-spline only replaces the
+fall-off shape of each splat---so there is no explicit smooth surface, no
+CAD-native output, and no analytic metric tensor. Our work is orthogonal:
+we use B-splines as the \emph{geometric carrier} (a smooth surface on which
+kernels live), not as a kernel replacement, and the surface's first
+fundamental form supplies the kernel covariance in closed form.
 
 % -------------------------------------------------------------
 \subsection{Surface-Bound Gaussian Splatting}\label{sec:rw:bindinggs}
@@ -125,34 +165,132 @@ rather than intrinsic manifold kernels, and they remain mesh- or
 primitive-bound.
 
 % -------------------------------------------------------------
-\subsection{The Empty Intersection}\label{sec:rw:gap}
+\subsection{Fourier and Harmonic Representations of Closed Surfaces}\label{sec:rw:fourier}
+
+A parallel tradition represents closed surfaces not by control meshes
+but by expansions in a global harmonic basis. The choice of basis is
+dictated by the topology of the parameter domain, and the family splits
+sharply along genus.
+
+\paragraph{Genus-zero surfaces: spherical harmonics.}
+For a closed simply-connected (genus-0) surface, the vertex set admits a
+bijective, area-preserving map to the unit sphere $S^{2}$, after which
+each Cartesian coordinate becomes a spherical function
+$x(\theta,\varphi),y(\theta,\varphi),z(\theta,\varphi)$ and is expanded
+in spherical harmonics:
+$\mathbf{x}(\theta,\varphi)=\sum_{\ell,m}\mathbf{a}_{\ell m}Y_{\ell m}(\theta,\varphi)$,
+with coefficients found by least squares. The canonical pipeline is
+\textsc{SPHARM}~\cite{shen2009spharm}, widely used in morphometrics;
+Sijbers et al.~\cite{sijbers2002fd3d} reach the same expansion via an
+inflation algorithm that maps a polygonised surface onto $S^{2}$ before
+the harmonic fit, and Kazhdan et al.~\cite{kazhdan2003sh} use the
+spherical-harmonic spectrum as a rotation-invariant 3D shape
+descriptor. The basis is orthogonal and intrinsically multiscale---low
+orders encode global form, high orders encode detail---but it is
+restricted to genus~0 and, being globally supported, exhibits Gibbs-type
+oscillations at sharp features and offers no local editability.
+
+\paragraph{Beyond the sphere: spheroidal and toroidal bases.}
+The parameter domain need not be a sphere. Shaqfa and van
+Rees~\cite{shaqfarees2024soh} observe that oblate or prolate particles
+are poorly served by a spherical parameterisation and generalise the
+basis to \emph{spheroidal} harmonics---separation-of-variables solutions
+of Laplace's equation in spheroidal coordinates---with three mapping
+strategies (radial, hyperbolic, and a conformalised mean-curvature-flow
+preconditioner for non-star-shaped input), consistently outperforming
+SPHARM on non-spherical granular data. For genus-1 closed surfaces the
+natural domain is the torus $T^{2}=S^{1}\!\times\!S^{1}$ with periodic
+parameters $(u,v)\in[0,2\pi)^{2}$, and the coordinate expansion becomes
+a two-variable Fourier series
+$\mathbf{x}(u,v)=\sum_{k,l}\mathbf{c}_{kl}e^{i(ku+lv)}$; this is the
+deformable-Fourier-model formulation of Staib and
+Duncan~\cite{staibduncan1996}, which models tori, open, closed, and
+tubular surfaces with a small sinusoidal coefficient set. Higher genus
+admits no single canonical Euclidean domain, but a compact orientable
+surface of genus $g$ is conformally a genus-$g$ Riemann surface on which
+harmonic coordinate functions admit a Weierstrass-type representation in
+meromorphic 1-forms; Connor~\cite{connor2016harmonic} constructs such
+harmonic parametrisations at arbitrary genus. The unifying principle is
+that \emph{the genus of the surface selects the harmonic basis}: no
+single Fourier family spans closed surfaces of arbitrary topology.
+
+\paragraph{Volumetric and local strategies.}
+When a surface parameterisation is unavailable, the closed surface can
+be encoded indirectly: Vrani{\'c} and Saupe~\cite{vranisaupe2001dft}
+voxelise the enclosed solid and take the 3D discrete Fourier transform
+of the volume, using low-frequency coefficients as a
+transformation-invariant shape descriptor; Niculescu
+et al.~\cite{niculescu2002doubleefd} apply 2D elliptic Fourier
+descriptors~\cite{kuhlgiardina1982} per horizontal slice and a second
+Fourier transform along $z$, reconstructing the object by inverse
+transform. These volumetric routes are simple and FFT-fast but describe
+the \emph{solid's spectrum} rather than the surface itself and require
+isosurface extraction to recover geometry. A modern local alternative
+sidesteps the global-basis limitation by tiling the surface with
+per-anchor spherical-harmonic fields: SHARC~\cite{sapoutzoglou2026sharc}
+places reference points in the interior volume, ray-casts the visible
+distance field from each, and encodes it with a fast spherical harmonic
+transform, achieving genus-agnostic reconstruction at state-of-the-art
+fidelity and parsimony.
+
+\paragraph{Relation to our representation.}
+The entire Fourier/harmonic family is, by construction, a competitor to
+the parametric-spline carrier we adopt: both provide a closed-surface
+parametrisation, but with complementary trade-offs. Fourier bases are
+\emph{global} (any coefficient perturbs the whole surface), which makes
+them natural for shape retrieval, spectral regularisation, and
+band-limited level-of-detail, but poor for local editing and prone to
+oscillations at sharp features. B-spline bases are \emph{locally
+supported}, CAD-native, and admit a closed-form first fundamental form,
+but are restricted to tensor-product patch topology in the present work.
+The two traditions rarely meet in the literature, and the intersection
+is salient for us because our heat-kernel appearance already lives in
+the spectral domain of the surface Laplacian: had the geometric carrier
+also been a harmonic basis, geometry and appearance would share a single
+spectral frame. We instead keep the B-spline carrier for its local
+controllability and analytic metric, and couple it to the
+\emph{heat-kernel} spectrum of that same carrier, recovering a spectral
+appearance representation on a locally-supported geometry---a point of
+contact between the two families that, to our knowledge, has not been
+explored.
+
+% -------------------------------------------------------------
+\subsection{Positioning}\label{sec:rw:gap}
 
 \begin{table}[t]
-  \caption{Landscape of adjacent literatures. The cell marked
-  \textbf{(ours)} is, to our knowledge, unoccupied.}
+  \caption{Positioning relative to adjacent literatures. ``Carrier'' = the
+  geometric object kernels live on; ``Kernel'' = the fall-off function.
+  SplineSplat swaps the kernel; we swap the carrier and derive its metric as
+  kernel covariance. The cell marked \textbf{(ours)} is, to our knowledge,
+  unoccupied.}
   \label{tab:landscape}
   \small
-  \begin{tabular}{lccc}
+  \begin{tabular}{lcccl}
     \toprule
-     & Gaussian rendering & Diff.~rasterisation & Generative / flow \\
+     & Carrier & Kernel & Appearance & Venue \\
     \midrule
-    2D planar curves     & NURBS Splatting~\cite{nurbssplatting} & --- & --- \\
-    3D triangular mesh   & SuGaR / OMeGa / GauSTAR~\cite{sugar,omega,gaustar} & DiffSubSurf~\cite{diffsubsurf} & --- \\
-    3D parametric surface & \textbf{(ours)} & --- & DualBrep~\cite{dualbrep} \\
-    3D B-rep             & --- & --- & DualBrep~\cite{dualbrep} \\
+    NURBS Splatting~\cite{nurbssplatting} & 2D curve & Gaussian & none & ECCV'26 \\
+    SplineSplat~\cite{splinesplat} & 3D cloud & \emph{B-spline} & per-splat & SA'25 \\
+    Worchel\&Alexa~\cite{worchelalexa2023} & param.~surf. & --- & none & SA'23 \\
+    SuGaR / OMeGa~\cite{sugar,omega} & 3D mesh & Gaussian & per-splat & CVPR'24 \\
+    HKTex~\cite{hktex} & 3D mesh & heat kernel & intrinsic & ECCV'26 \\
+    DualBrep~\cite{dualbrep} & B-rep & --- & none & SIG'26 \\
+    \textbf{(ours)} & \emph{B-spline surf.} & heat kernel & intrinsic & --- \\
     \bottomrule
   \end{tabular}
 \end{table}
 
-\autoref{tab:landscape} summarises the landscape. NURBS
-Splatting~\cite{nurbssplatting} establishes the spline-as-Gaussian-field
-rendering paradigm but only for 2D curves. Surface-bound
-Gaussian splatting~\cite{sugar,omega,gaustar,meshgs,manifoldgs} binds
-Gaussians to surfaces but only to discrete meshes. HKTex~\cite{hktex}
-defines intrinsic Gaussian appearance but only on a discrete mesh with a
-fixed carrier. Differentiable CAD~\cite{nurbsdiff,diffnurbs,valvefit} and
-generative B-rep reconstruction~\cite{dualbrep} model parametric geometry but
-do not render it with Gaussians and do not optimise appearance jointly from
-images. The intersection---a differentiable B-spline \emph{surface} rendered
-as intrinsic Gaussian appearance and optimised jointly from multi-view
-images---is empty, and this paper occupies it.
+\autoref{tab:landscape} positions our contribution along three axes---the
+geometric \emph{carrier}, the splatting \emph{kernel}, and the
+\emph{appearance} model. NURBS Splatting~\cite{nurbssplatting} establishes the
+spline-as-Gaussian-field paradigm but only for 2D curves.
+SplineSplat~\cite{splinesplat} swaps the Gaussian kernel for a B-spline kernel
+in a 3DGS pipeline, yet retains the unstructured primitive cloud as carrier;
+Worchel and Alexa~\cite{worchelalexa2023} render parametric surfaces
+differentiably but carry no appearance field. Surface-bound Gaussian
+splatting~\cite{sugar,omega,gaustar,meshgs} and HKTex~\cite{hktex} bind
+kernels to a \emph{discrete} mesh, while DualBrep~\cite{dualbrep} models
+B-rep geometry without rendering. The unoccupied cell is a B-spline
+\emph{surface} as carrier, with the surface's own analytic metric supplying
+the heat-kernel covariance, jointly optimised from multi-view images---this
+paper occupies it.

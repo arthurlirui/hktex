@@ -7,7 +7,6 @@ Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
 Database file #1: ../references.bib
 Reallocated singl_function (elt_size=4) to 100 items from 50.
-Reallocated wiz_functions (elt_size=4) to 9000 items from 6000.
 Reallocated glb_str_ptr (elt_size=4) to 20 items from 10.
 Reallocated global_strs (elt_size=200001) to 20 items from 10.
 Reallocated glb_str_end (elt_size=4) to 20 items from 10.
@@ -41,11 +40,21 @@ Warning--empty address in nurbssplatting
 Warning--page numbers missing in both pages and numpages fields in nurbssplatting
 Warning--no number and no volume in nurbsdiff
 Warning--page numbers missing in both pages and numpages fields in nurbsdiff
+Warning--no number and no volume in connor2016harmonic
+Warning--page numbers missing in both pages and numpages fields in connor2016harmonic
+Warning--empty publisher in viewdepkernels
+Warning--empty address in viewdepkernels
+Warning--page numbers missing in both pages and numpages fields in viewdepkernels
+Warning--no number and no volume in neuronurbs
+Warning--page numbers missing in both pages and numpages fields in neuronurbs
 Warning--empty publisher in hktex
 Warning--empty address in hktex
 Warning--page numbers missing in both pages and numpages fields in hktex
 Warning--no number and no volume in relightable3dgaussians
 Warning--page numbers missing in both pages and numpages fields in relightable3dgaussians
+Warning--empty publisher in splinesplat
+Warning--empty address in splinesplat
+Warning--page numbers missing in both pages and numpages fields in splinesplat
 Warning--no number and no volume in gigs
 Warning--page numbers missing in both pages and numpages fields in gigs
 Warning--empty publisher in sugar
@@ -53,6 +62,8 @@ Warning--empty address in sugar
 Warning--page numbers missing in both pages and numpages fields in sugar
 Warning--empty address in 2dgaussians
 Warning--page numbers missing in both pages and numpages fields in 2dgaussians
+Warning--empty publisher in kazhdan2003sh
+Warning--empty address in kazhdan2003sh
 Warning--can't use both volume and number fields in kerbl3Dgaussians
 Warning--empty address in kerbl3Dgaussians
 Warning--page numbers missing in both pages and numpages fields in kerbl3Dgaussians
@@ -60,55 +71,63 @@ Warning--no number and no volume in gusir
 Warning--page numbers missing in both pages and numpages fields in gusir
 Warning--no number and no volume in gsir
 Warning--page numbers missing in both pages and numpages fields in gsir
+Warning--no number and no volume in niculescu2002doubleefd
+Warning--no number and no volume in sapoutzoglou2026sharc
+Warning--page numbers missing in both pages and numpages fields in sapoutzoglou2026sharc
+Warning--no number and no volume in shaqfarees2024soh
+Warning--page numbers missing in both pages and numpages fields in shaqfarees2024soh
+Warning--empty publisher in sijbers2002fd3d
+Warning--empty address in sijbers2002fd3d
 Warning--no number and no volume in svgir
 Warning--page numbers missing in both pages and numpages fields in svgir
 Warning--no number and no volume in texturesplat
 Warning--page numbers missing in both pages and numpages fields in texturesplat
+Warning--no number and no volume in vranisaupe2001dft
 Warning--no number and no volume in deferredgs
 Warning--page numbers missing in both pages and numpages fields in deferredgs
 Warning--no number and no volume in geosplatting
 Warning--page numbers missing in both pages and numpages fields in geosplatting
 Warning--no number and no volume in rtrgs
 Warning--page numbers missing in both pages and numpages fields in rtrgs
-You've used 28 entries,
-            6335 wiz_defined-function locations,
-            1660 strings with 25020 characters,
-and the built_in function-call counts, 27531 in all, are:
-= -- 3692
-> -- 836
+You've used 42 entries,
+            5981 wiz_defined-function locations,
+            1689 strings with 27969 characters,
+and the built_in function-call counts, 43564 in all, are:
+= -- 6020
+> -- 1296
 < -- 0
-+ -- 271
-- -- 297
-* -- 1809
-:= -- 2558
-add.period$ -- 155
-call.type$ -- 28
-change.case$ -- 187
-chr.to.int$ -- 21
-cite$ -- 86
-duplicate$ -- 2486
-empty$ -- 1816
-format.name$ -- 345
-if$ -- 6976
++ -- 428
+- -- 466
+* -- 2881
+:= -- 4022
+add.period$ -- 228
+call.type$ -- 42
+change.case$ -- 282
+chr.to.int$ -- 35
+cite$ -- 120
+duplicate$ -- 3857
+empty$ -- 2771
+format.name$ -- 566
+if$ -- 11085
 int.to.chr$ -- 9
 int.to.str$ -- 1
-missing$ -- 109
-newline$ -- 304
-num.names$ -- 189
-pop$ -- 1142
+missing$ -- 169
+newline$ -- 441
+num.names$ -- 287
+pop$ -- 1709
 preamble$ -- 1
-purify$ -- 397
+purify$ -- 604
 quote$ -- 0
-skip$ -- 757
+skip$ -- 1250
 stack$ -- 0
-substring$ -- 1557
-swap$ -- 124
+substring$ -- 2680
+swap$ -- 256
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 589
-warning$ -- 58
-while$ -- 145
+type$ -- 869
+warning$ -- 78
+while$ -- 237
 width$ -- 0
-write$ -- 586
-(There were 58 warnings)
+write$ -- 874
+(There were 78 warnings)

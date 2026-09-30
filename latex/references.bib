@@ -470,3 +470,148 @@
   year      = {2025},
   note      = {Real-time geometry-aware Gaussian-surfel mapping for SLAM; mesh/surfel-bound.}
 }
+
+% --- Spline-Texture related work additions (2026-09-28, second pass) ---
+
+@article{worchelalexa2023,
+  title   = {Differentiable Rendering of Parametric Geometry},
+  author  = {Worchel, Markus and Alexa, Marc},
+  journal = {ACM Transactions on Graphics (Proceedings of SIGGRAPH Asia)},
+  volume  = {42},
+  number  = {6},
+  pages   = {232:1--232:18},
+  year    = {2023},
+  doi     = {10.1145/3618381},
+  note    = {Differentiable meshing operators for B\'ezier/B-spline/NURBS surfaces, enabling image-based inverse graphics on parametric geometry; the geometry-only precursor of our joint geometry--appearance pipeline.}
+}
+
+@article{neuronurbs,
+  title   = {{NeuroNURBS}: Learning Efficient Surface Representations for {3D} Solids},
+  author  = {Fan, Jiajie and Gholami, Babak and B{\"a}ck, Thomas and Wang, Hao},
+  journal = {arXiv preprint arXiv:2411.10848},
+  year    = {2024},
+  note    = {Learns compact NURBS surface representations directly from B-rep parameters; complementary generative CAD line that could supply initial geometry for our joint optimisation.}
+}
+
+@inproceedings{splinesplat,
+  title     = {{SplineSplat}: Representing Radiance Fields Using {B-Splines}},
+  author    = {George, Nygel and Thomas, C.~Seelamantula},
+  booktitle = {SIGGRAPH Asia 2025 Technical Communications},
+  year      = {2025},
+  note      = {Replaces the Gaussian splatting kernel with a B-spline kernel; matches 3DGS fidelity at up to 18\% lower training time. Orthogonal to our work: swaps the kernel, not the carrier.}
+}
+
+@inproceedings{viewdepkernels,
+  title     = {Learning View-Dependent Splatting Kernels},
+  author    = {Ding, Huakeng and Liu, Zhanpeng and Pei, Fan and Zhou, Kun and Wu, Hongzhi},
+  booktitle = {ACM Transactions on Graphics (SIGGRAPH 2026 Conference Papers)},
+  year      = {2026},
+  doi       = {10.1145/3799902.3811064},
+  note      = {Learns view-dependent 2D splatting kernels; identifies B-spline kernels (SplineSplat) as a view-independent family lacking cross-view 3D consistency.}
+}
+
+% ============================================================
+% Fourier / harmonic representations of closed surfaces
+% ============================================================
+
+@article{kuhlgiardina1982,
+  title   = {Elliptic Fourier Features of a Closed Contour},
+  author  = {Kuhl, Frank P. and Giardina, Charles R.},
+  journal = {Computer Graphics and Image Processing},
+  volume  = {18},
+  number  = {3},
+  pages   = {236--258},
+  year    = {1982},
+  doi     = {10.1016/0146-664X(82)90034-X}
+}
+
+@article{staibduncan1996,
+  title   = {Deformable {Fourier} Models for Surface Finding in 3-{D} Images},
+  author  = {Staib, Lawrence H. and Duncan, James S.},
+  journal = {IEEE Transactions on Medical Imaging},
+  volume  = {15},
+  number  = {6},
+  pages   = {916--923},
+  year    = {1996},
+  doi     = {10.1109/42.539940}
+}
+
+@article{shen2009spharm,
+  title   = {Modeling Three-Dimensional Morphological Structures Using Spherical Harmonics},
+  author  = {Shen, Li and Farid, Hany and McPeek, Mark A.},
+  journal = {Evolution},
+  volume  = {63},
+  number  = {4},
+  pages   = {1003--1016},
+  year    = {2009},
+  doi     = {10.1111/j.1558-5646.2008.00557.x}
+}
+
+@inproceedings{sijbers2002fd3d,
+  title     = {Algorithm for the Computation of {3D} {Fourier} Descriptors},
+  author    = {Sijbers, Jan and Ceulemans, Tom and Van Dyck, Dirk},
+  booktitle = {Proceedings of the 16th International Conference on Pattern Recognition (ICPR)},
+  year      = {2002},
+  pages     = {1067--1070},
+  doi       = {10.1109/ICPR.2002.1048420}
+}
+
+@inproceedings{kazhdan2003sh,
+  title     = {Rotation Invariant Spherical Harmonic Representation of {3D} Shape Descriptors},
+  author    = {Kazhdan, Michael and Funkhouser, Thomas and Rusinkiewicz, Szymon},
+  booktitle = {Eurographics/ACM SIGGRAPH Symposium on Geometry Processing},
+  year      = {2003},
+  pages     = {156--164}
+}
+
+@article{vranisaupe2001dft,
+  title   = {{3D} Shape Descriptor Based on {3D} {Fourier} Transform},
+  author  = {Vrani{\'c}, Dejan V. and Saupe, Dietmar},
+  journal = {Proceedings of the EURASIP Conference on Digital Signal Processing for Multimedia Communications and Services},
+  pages   = {271--274},
+  year    = {2001}
+}
+
+@article{shaqfarees2024soh,
+  title   = {Spheroidal Harmonics for Generalizing the Morphological Decomposition of Closed Parametric Surfaces},
+  author  = {Shaqfa, Mahmoud and van Rees, Wim M.},
+  journal = {Physical Review X},
+  year    = {2024},
+  note    = {Spheroidal-harmonic generalisation of SPHARM for oblate/prolate particles; three mapping techniques (rSOH, hSOH, c-rSOH) for star-shaped and non-star-shaped surfaces.}
+}
+
+@article{niculescu2002doubleefd,
+  title   = {A Dynamic Imaging Database for {3-D} Morphologic Analysis and Clinical Assessment in Diagnostic Radiology},
+  author  = {Niculescu, Gabriela and Toni, Louay and Foran, David J. and Nosher, John L. and DeMarco, J. Kevin},
+  journal = {AMIA Annual Symposium Proceedings},
+  pages   = {1115},
+  year    = {2002}
+}
+
+@article{connor2016harmonic,
+  title   = {Harmonic Parametrizations of Surfaces of Arbitrary Genus},
+  author  = {Connor, Peter},
+  journal = {arXiv preprint arXiv:1602.05265},
+  year    = {2016}
+}
+
+@article{sapoutzoglou2026sharc,
+  title   = {{SHARC}: Reference Point Driven Spherical Harmonic Representation for Complex Shapes},
+  author  = {Sapoutzoglou, Panagiotis and Terzakis, George and Pateraki, Maria},
+  journal = {arXiv preprint arXiv:2604.01894},
+  year    = {2026}
+}
+
+@article{tancik2020fourierfeatures,
+  title   = {Fourier Features Let Networks Learn High Frequency Functions in Low Dimensional Domains},
+  author  = {Tancik, Matthew and Srinivasan, Pratul P. and Mildenhall, Ben and others},
+  journal = {Advances in Neural Information Processing Systems (NeurIPS)},
+  year    = {2020}
+}
+
+@inproceedings{lindell2022bacon,
+  title     = {{BACON}: Band-limited Coordinate Networks for Multiscale Scene Representation},
+  author    = {Lindell, David B. and Van Veen, Dave and Park, Jeong Joon and Wetzstein, Gordon},
+  booktitle = {IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+  year      = {2022}
+}

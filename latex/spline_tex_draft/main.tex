@@ -53,10 +53,13 @@ approximation entirely. Building on a differentiable NURBS backend, our
 formulation jointly optimises surface geometry (control points) and
 appearance (kernel parameters) from multi-view images through a single
 differentiable rendering pipeline, yielding CAD-native smooth surfaces with
-high-fidelity intrinsic textures. We position our contribution at the
-intersection of three otherwise-disjoint literatures---differentiable CAD,
-surface-bound Gaussian splatting, and intrinsic mesh textures---and show
-that this intersection has remained empty.
+high-fidelity intrinsic textures. We position our contribution relative to
+three adjacent literatures---differentiable rendering of parametric
+surfaces~\cite{worchelalexa2023}, B-spline splatting
+kernels~\cite{splinesplat}, and intrinsic mesh textures~\cite{hktex}---and
+identify the specific cell they leave unoccupied: a B-spline \emph{surface}
+as carrier whose analytic metric supplies heat-kernel covariance, jointly
+optimised from multi-view images.
 \end{abstract}
 
 \ccsdesc[500]{Computing methodologies~Shape modeling}
@@ -113,10 +116,10 @@ HKTex (fixed mesh) nor binding-GS (mesh, no analytic metric) can do.
         B-spline control points and kernel parameters simultaneously from
         multi-view images through a differentiable subdivision-and-splat
         rendering pipeline.
-  \item A positioning of this work at an empty intersection of
-        differentiable CAD, surface-bound Gaussian splatting, and intrinsic
-        mesh textures, supported by a structured survey of adjacent
-        literatures (\S\ref{sec:related}).
+  \item A positioning of this work relative to differentiable rendering of
+        parametric surfaces~\cite{worchelalexa2023}, B-spline splatting
+        kernels~\cite{splinesplat}, and intrinsic mesh textures~\cite{hktex},
+        identifying the unoccupied cell our method fills (\S\ref{sec:related}).
 \end{itemize}
 
 % =============================================================
