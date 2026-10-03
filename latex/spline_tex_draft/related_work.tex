@@ -233,6 +233,26 @@ distance field from each, and encodes it with a fast spherical harmonic
 transform, achieving genus-agnostic reconstruction at state-of-the-art
 fidelity and parsimony.
 
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\columnwidth]{fourier_closed_surface.png}
+  \caption{Fourier / harmonic representations of closed surfaces, shown
+  at three accumulation stages (top: base term; middle: a few terms;
+  bottom: full low-order reconstruction). \emph{Left column (genus~0):}
+  a star-shaped closed surface parametrised on the sphere with radial
+  function $r(\theta,\varphi)=\sum_{\ell,m}a_{\ell m}Y_{\ell m}(\theta,\varphi)$;
+  the $Y_{0}^{0}$ term alone is a sphere, and each subsequent spherical
+  harmonic adds a lower-amplitude, higher-frequency deformation.
+  \emph{Right column (genus~1):} a torus parametrised on
+  $T^{2}=S^{1}\!\times\!S^{1}$ with coordinate map
+  $\mathbf{X}(u,v)=\sum_{k,l}\mathbf{c}_{kl}\,e^{i(ku+lv)}$;
+  the base mode is a standard torus and each additional two-variable
+  Fourier term bends, ripples, or twists it while preserving periodicity
+  in both $u$ and $v$. The two columns illustrate the governing principle
+  of this section: the genus of the surface selects the harmonic basis.}
+  \label{fig:fourier-closed}
+\end{figure}
+
 \paragraph{Relation to our representation.}
 The entire Fourier/harmonic family is, by construction, a competitor to
 the parametric-spline carrier we adopt: both provide a closed-surface

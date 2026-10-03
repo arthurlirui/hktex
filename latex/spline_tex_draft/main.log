@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.6.2)  28 SEP 2026 22:52
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.6.2)  3 OCT 2026 09:41
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1087,16 +1087,27 @@ LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/sc' will be
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
+<fourier_closed_surface.png, id=186, 442.2924pt x 650.43pt>
+File: fourier_closed_surface.png Graphic file (type png)
+<use fourier_closed_surface.png>
+Package pdftex.def Info: fourier_closed_surface.png  used on input line 238.
+(pdftex.def)             Requested size: 243.14749pt x 357.56888pt.
 LaTeX Font Info:    Font shape `T1/LinuxBiolinumT-TLF/m/n' will be
-(Font)              scaled to size 8.0pt on input line 265.
-LaTeX Font Info:    Font shape `T1/LinuxBiolinumT-TLF/b/n' will be
-(Font)              scaled to size 8.0pt on input line 265.
+(Font)              scaled to size 8.0pt on input line 252.
+LaTeX Font Info:    Font shape `T1/LinuxBiolinumT-TLF/m/it' will be
+(Font)              scaled to size 8.0pt on input line 252.
 LaTeX Font Info:    Font shape `OT1/LinuxLibertineT-TLF/sb/n' will be
-(Font)              scaled to size 8.0pt on input line 268.
+(Font)              scaled to size 8.0pt on input line 252.
 LaTeX Font Info:    Font shape `OT1/LinuxLibertineT-TLF/sb/n' will be
-(Font)              scaled to size 6.2pt on input line 268.
+(Font)              scaled to size 6.2pt on input line 252.
 
-Overfull \hbox (30.15633pt too wide) in paragraph at lines 268--281
+
+Class acmart Warning: A possible image without description on input line 254.
+
+LaTeX Font Info:    Font shape `T1/LinuxBiolinumT-TLF/b/n' will be
+(Font)              scaled to size 8.0pt on input line 285.
+
+Overfull \hbox (30.15633pt too wide) in paragraph at lines 288--301
  [][] 
  []
 
@@ -1104,8 +1115,8 @@ Overfull \hbox (30.15633pt too wide) in paragraph at lines 268--281
 Underfull \vbox (badness 1776) has occurred while \output is active []
 
  [3.3{c:/texlive/2024/texmf-dist/fonts/enc/dvips/libertine/lbtn_fygcup.enc}{c:/
-texlive/2024/texmf-dist/fonts/enc/dvips/libertine/lbtn_ncsllp.enc}]) (./main.bb
-l
+texlive/2024/texmf-dist/fonts/enc/dvips/libertine/lbtn_ncsllp.enc}]) [4.4 <./fo
+urier_closed_surface.png>] (./main.bbl
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/it' will be
 (Font)              scaled to size 7.0pt on input line 45.
 
@@ -1114,61 +1125,66 @@ Underfull \hbox (badness 2426) in paragraph at lines 166--176
 d Hy-brid As-sets via Varifold-
  []
 
-[4.4]
 LaTeX Info: Redefining \tempurl on input line 372.
 LaTeX Info: Redefining \tempurl on input line 400.
 LaTeX Info: Redefining \tempurl on input line 416.
+LaTeX Info: Redefining \tempurl on input line 492.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-LaTeX Info: Redefining \tempurl on input line 492.
+ [5.5]
 LaTeX Info: Redefining \tempurl on input line 507.
 LaTeX Info: Redefining \tempurl on input line 522.
 LaTeX Info: Redefining \tempurl on input line 574.
 )
 
-Package balance Warning: You have called \balance in second column
-(balance)                Columns might not be balanced.
+Class acmart Warning: Some images may lack descriptions.
+
+
+Overfull \vbox (1.16599pt too high) has occurred while \output is active []
+
 
 (c:/texlive/2024/texmf-dist/tex/generic/stringenc/se-pdfdoc.def
 File: se-pdfdoc.def 2019/11/29 v1.12 stringenc: PDFDocEncoding
 )
 (c:/texlive/2024/texmf-dist/tex/generic/stringenc/se-utf8.def
 File: se-utf8.def 2019/11/29 v1.12 stringenc: UTF-8
-) [5.5]
+) [6.6]
 (./main.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-05-08>
  ***********
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: C8E861ADF92729DA97AB40A898DA6B14;2885.
+(rerunfilecheck)             Checksum: A8AB60E050CE69CDCFE5C1107FCF6D47;2885.
  ) 
 Here is how much of TeX's memory you used:
- 22886 strings out of 473992
- 366804 string characters out of 5745049
+ 22939 strings out of 473992
+ 368062 string characters out of 5745049
  1974907 words of memory out of 5000000
- 44169 multiletter control sequences out of 15000+600000
- 741914 words of font info for 474 fonts, out of 8000000 for 9000
+ 44181 multiletter control sequences out of 15000+600000
+ 753132 words of font info for 502 fonts, out of 8000000 for 9000
  1302 hyphenation exceptions out of 8191
- 90i,16n,131p,1001b,712s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 90i,16n,131p,1161b,792s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/texlive/2024/texmf-dist/fonts/type1/public/inconsolata/Inconsolata-zi4r.p
 fb><c:/texlive/2024/texmf-dist/fonts/type1/public/newtx/LibertineMathMI.pfb><c:
-/texlive/2024/texmf-dist/fonts/type1/public/newtx/LibertineMathMI7.pfb><c:/texl
-ive/2024/texmf-dist/fonts/type1/public/newtx/LibertineMathRM.pfb><c:/texlive/20
-24/texmf-dist/fonts/type1/public/libertine/LinBiolinumT.pfb><c:/texlive/2024/te
-xmf-dist/fonts/type1/public/libertine/LinBiolinumTB.pfb><c:/texlive/2024/texmf-
-dist/fonts/type1/public/libertine/LinLibertineT.pfb><c:/texlive/2024/texmf-dist
-/fonts/type1/public/libertine/LinLibertineTB.pfb><c:/texlive/2024/texmf-dist/fo
-nts/type1/public/libertine/LinLibertineTI.pfb><c:/texlive/2024/texmf-dist/fonts
-/type1/public/libertine/LinLibertineTZ.pfb><c:/texlive/2024/texmf-dist/fonts/ty
-pe1/public/newtx/txexs.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/newtx
-/txmiaX.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/newtx/txsym.pfb><c:/
-texlive/2024/texmf-dist/fonts/type1/public/newtx/txsys.pfb>
-Output written on main.pdf (5 pages, 558432 bytes).
+/texlive/2024/texmf-dist/fonts/type1/public/newtx/LibertineMathMI5.pfb><c:/texl
+ive/2024/texmf-dist/fonts/type1/public/newtx/LibertineMathMI7.pfb><c:/texlive/2
+024/texmf-dist/fonts/type1/public/newtx/LibertineMathRM.pfb><c:/texlive/2024/te
+xmf-dist/fonts/type1/public/libertine/LinBiolinumT.pfb><c:/texlive/2024/texmf-d
+ist/fonts/type1/public/libertine/LinBiolinumTB.pfb><c:/texlive/2024/texmf-dist/
+fonts/type1/public/libertine/LinBiolinumTI.pfb><c:/texlive/2024/texmf-dist/font
+s/type1/public/libertine/LinLibertineT.pfb><c:/texlive/2024/texmf-dist/fonts/ty
+pe1/public/libertine/LinLibertineTB.pfb><c:/texlive/2024/texmf-dist/fonts/type1
+/public/libertine/LinLibertineTI.pfb><c:/texlive/2024/texmf-dist/fonts/type1/pu
+blic/libertine/LinLibertineTZ.pfb><c:/texlive/2024/texmf-dist/fonts/type1/publi
+c/newtx/txexs.pfb><c:/texlive/2024/texmf-dist/fonts/type1/public/newtx/txmiaX.p
+fb><c:/texlive/2024/texmf-dist/fonts/type1/public/newtx/txsym.pfb><c:/texlive/2
+024/texmf-dist/fonts/type1/public/newtx/txsys.pfb>
+Output written on main.pdf (6 pages, 897402 bytes).
 PDF statistics:
- 360 PDF objects out of 1000 (max. 8388607)
- 314 compressed objects within 4 object streams
- 78 named destinations out of 1000 (max. 500000)
- 109201 words of extra memory for PDF output out of 128383 (max. 10000000)
+ 379 PDF objects out of 1000 (max. 8388607)
+ 326 compressed objects within 4 object streams
+ 80 named destinations out of 1000 (max. 500000)
+ 117398 words of extra memory for PDF output out of 128383 (max. 10000000)
 
